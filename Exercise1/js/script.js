@@ -5,6 +5,8 @@
 Pixel painter
 Pippin Barr
 
+additions by Martin Hanses
+
 A small DOM-based program for "painting" on div-based pixels.
 
 *********************************************************************/
@@ -13,7 +15,8 @@ A small DOM-based program for "painting" on div-based pixels.
 const NUM_PIXELS = 1000;
 const PIXEL_REVERT_DELAY = 1000;
 const DEFAULT_COLOR = 'black';
-const PAINT_COLOR = 'white';
+
+let rotation = 0;
 
 // Set up our starting function for when the page loads
 window.onload = setup;
@@ -31,8 +34,12 @@ function setup() {
     pixel.setAttribute('class', 'pixel');
     // Add a mouseover handler to the new element
     pixel.addEventListener('mouseover', paint);
+    // Add a rotate handler to the new element
+    document.addEventListener('keydown', rotate);
+
     // Add the element to the body of the page
     document.body.appendChild(pixel);
+
   }
 }
 
@@ -50,10 +57,10 @@ function paint(e) {
   let g = (Math.floor(Math.random() * 255));
   let b = (Math.floor(Math.random() * 255));
   //assign those values into a single variable
-  let rgbValue = 'rgb(' + r + ',' + g + ',' + b + ')';
+  let rgbValue = `rgb(${r},${g},${b})`;
 
 
-    // Change the background color of the randomized rgbValue 
+  // Change the background color of the randomized rgbValue
   pixel.style.backgroundColor = rgbValue;
 
   // Set a timeout to call the reset function after a delay
@@ -67,4 +74,38 @@ function paint(e) {
 // Takes the provided pixel element and sets its color back to default
 function resetPixel(pixel) {
   pixel.style.backgroundColor = DEFAULT_COLOR;
+}
+
+
+// keyDown
+//
+//Reacts to key presses
+function rotate(buttonPressed){
+
+  //find all pixels in the scene
+  let pixels = document.getElementsByClassName('pixel');
+
+//for the left arrow
+  if (buttonPressed.keyCode === 37) {
+    //change the rotation variable
+    rotation += 1;
+    // update the rotation for all pixels
+
+    for(let i=0; i <= pixels.length; i++){
+      pixels[i].style.transform = `rotate(${rotation}deg)`;
+    }
+
+}
+
+//for the right arrow
+if (buttonPressed.keyCode === 39) {
+  //change the rotation variable
+  rotation += -1;
+  // update the rotation for all pixels
+  for(let i=0; i <= pixels.length; i++){
+    pixels[i].style.transform = `rotate(${rotation}deg)`;
+}
+}
+
+
 }
