@@ -91,7 +91,7 @@ function rotate(buttonPressed){
     rotation += 1;
     // update the rotation for all pixels
 
-    for(let i=0; i <= pixels.length; i++){
+    for(let i=0; i < pixels.length; i++){
       pixels[i].style.transform = `rotate(${rotation}deg)`;
     }
 
@@ -102,7 +102,7 @@ if (buttonPressed.keyCode === 39) {
   //change the rotation variable
   rotation += -1;
   // update the rotation for all pixels
-  for(let i=0; i <= pixels.length; i++){
+  for(let i=0; i < pixels.length; i++){
     pixels[i].style.transform = `rotate(${rotation}deg)`;
 }
 }
