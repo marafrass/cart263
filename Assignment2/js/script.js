@@ -29,6 +29,8 @@ $(document).ready(setup);
 //Starting functions to set up our document
 function setup() {
 
+
+
   //Find the total amount of secrets and log in console
   $secretsTotal = $('.secret').length;
   console.log($secretsTotal);
@@ -38,6 +40,10 @@ function setup() {
 
   //Assign all .redacteds to a variable for easy access
   $redacteds = $('.redacted');
+
+  //Set up score text
+  $('#displayScore').text("You've found " + secretsFound + " out of " + $secretsTotal + " but oh shit, " + ($redactedRevealed - 0) + " secrets are visible!");
+
 
   //Set interval for re-rolling whether or not redacted's are revealed (great grammar here martin you fucking idiot)
   setInterval(update, UPDATEINTERVAL);
@@ -58,13 +64,16 @@ function update() {
   console.log("update");
   console.log(secretsFound);
 
+  $redactedRevealed = $('.revealed').length;
+
+
 
   //Display different messages based on how many secrets the player's found
 
   if ($redactedRevealed >= $redactedTotal) {
     $('#displayScore').text("You blew it! You fool!");
   } else if (secretsFound < $secretsTotal) {
-    $('#displayScore').text("You've found " + secretsFound + " out of " + $secretsTotal + " but oh shit, " + $redactedRevealed + " secrets are visible!");
+    $('#displayScore').text("You've found " + secretsFound + " out of " + $secretsTotal + " but oh shit, " + ($redactedRevealed - 0) + " secrets are visible!");
   } else if (secretsFound === $secretsTotal) {
     $('#displayScore').text("You've done it! You've only gone and done it!");
   }
@@ -108,7 +117,7 @@ function revealSecret() {
 
   $(this).addClass('found');
   secretsFound += 1;
-  //update the total and turn off the span 
+  //update the total and turn off the span
   $secretsTotal = $('.secret').length;
   $(this).off();
 
