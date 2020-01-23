@@ -93,7 +93,6 @@ function paint(e) {
   // are passed to the callback function (resetPixel)
   setTimeout(resetPixel, PIXEL_REVERT_DELAY, pixel);
 
-
 }
 
 // resetPixel
