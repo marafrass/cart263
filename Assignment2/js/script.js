@@ -10,10 +10,12 @@ to match your project! Write JavaScript to do amazing things below!
 
 *********************************************************************/
 //Create variable for spans
-let $spans;
+let $redacteds;
 //Create secret variables (found and total)
 let secretsFound = 0;
-let secretsTotal;
+let $secretsTotal;
+let $redactedTotal;
+let $redactedRevealed;
 
 //Set constants instead of hard coded numbers
 const UPDATEINTERVAL = 500;
@@ -28,19 +30,22 @@ $(document).ready(setup);
 function setup() {
 
   //Find the total amount of secrets and log in console
-  secretsTotal = $('.secret').length;
-  console.log(secretsTotal);
-  //Assign all spans to a variable for easy access
-  $spans = $('span');
+  $secretsTotal = $('.secret').length;
+  console.log($secretsTotal);
+
+  $redactedTotal = $('.redacted').length;
+  $redactedRevealed = $('.revealed').length;
+
+  //Assign all .redacteds to a variable for easy access
+  $redacteds = $('.redacted');
 
   //Set interval for re-rolling whether or not redacted's are revealed (great grammar here martin you fucking idiot)
   setInterval(update, UPDATEINTERVAL);
   //Create handler for when you click a 'span'
-  $spans.on('click', spanClicked);
+  $redacteds.on('click', spanClicked);
   //Create handler for revealing secrets on mouseover
   $('.secret').on('mouseover', revealSecret)
   //Display initial text to display amount of secrets and player objective
-  $('#displayScore').text("Find the secrets! You've found " + secretsFound + " out of " + secretsTotal);
 }
 
 //update()
@@ -48,10 +53,21 @@ function setup() {
 //Basic update of every span - runs every interval
 function update() {
   //call updateSpan function for every span
-  $spans.each(updateSpan);
+  $redacteds.each(updateSpan);
   //Log a bunch of crap in the console because that's just how I know it works.
   console.log("update");
   console.log(secretsFound);
+
+
+  //Display different messages based on how many secrets the player's found
+
+  if ($redactedRevealed >= $redactedTotal) {
+    $('#displayScore').text("You blew it! You fool!");
+  } else if (secretsFound < $secretsTotal) {
+    $('#displayScore').text("You've found " + secretsFound + " out of " + $secretsTotal + " but oh shit, " + $redactedRevealed + " secrets are visible!");
+  } else if (secretsFound === $secretsTotal) {
+    $('#displayScore').text("You've done it! You've only gone and done it!");
+  }
 
 }
 
@@ -61,10 +77,14 @@ function update() {
 //has a 10% chance of triggering
 function updateSpan() {
 
+
   let x = Math.random();
   if (x < PROBABILITYTORESET) {
     $(this).removeClass('redacted');
     $(this).addClass('revealed');
+    //Update the array variable
+    $redactedRevealed = $('.revealed').length;
+
   }
   //log that we're updating spans
   console.log("updating spans");
@@ -77,6 +97,8 @@ function spanClicked() {
   $(this).addClass('redacted');
   $(this).removeClass('revealed');
 
+
+
 }
 
 //revealSecret()
@@ -86,13 +108,11 @@ function revealSecret() {
 
   $(this).addClass('found');
   secretsFound += 1;
+  //update the total and turn off the span 
+  $secretsTotal = $('.secret').length;
   $(this).off();
 
-  //Display different messages based on how many secrets the player's found
-  if (secretsFound < secretsTotal) {
-    $('#displayScore').text("You've found " + secretsFound + " out of " + secretsTotal);
-  } else if (secretsFound === secretsTotal) {
-    $('#displayScore').text("You've done it! You've only gone and done it!");
-  }
+
+
 
 }
