@@ -2,11 +2,10 @@
 
 /********************************************************************
 
-Title of Project
-Author Name
+Redactive Reductionist
+Martin Hanses
 
-This is a template. Fill in the title, author, and this description
-to match your project! Write JavaScript to do amazing things below!
+Write cool stuff here 
 
 *********************************************************************/
 //Create variable for spans
@@ -29,8 +28,6 @@ $(document).ready(setup);
 //Starting functions to set up our document
 function setup() {
 
-
-
   //Find the total amount of secrets and log in console
   $secretsTotal = $('.secret').length;
   console.log($secretsTotal);
@@ -43,7 +40,6 @@ function setup() {
 
   //Set up score text
   $('#displayScore').text("You've found " + secretsFound + " out of " + $secretsTotal + " but oh shit, " + ($redactedRevealed - 0) + " secrets are visible!");
-
 
   //Set interval for re-rolling whether or not redacted's are revealed (great grammar here martin you fucking idiot)
   setInterval(update, UPDATEINTERVAL);
@@ -63,10 +59,8 @@ function update() {
   //Log a bunch of crap in the console because that's just how I know it works.
   console.log("update");
   console.log(secretsFound);
-
+  //Update the amount of redacteds revealed
   $redactedRevealed = $('.revealed').length;
-
-
 
   //Display different messages based on how many secrets the player's found
 
@@ -86,7 +80,6 @@ function update() {
 //has a 10% chance of triggering
 function updateSpan() {
 
-
   let x = Math.random();
   if (x < PROBABILITYTORESET) {
     $(this).removeClass('redacted');
@@ -105,9 +98,6 @@ function updateSpan() {
 function spanClicked() {
   $(this).addClass('redacted');
   $(this).removeClass('revealed');
-
-
-
 }
 
 //revealSecret()
@@ -120,8 +110,5 @@ function revealSecret() {
   //update the total and turn off the span
   $secretsTotal = $('.secret').length;
   $(this).off();
-
-
-
 
 }
