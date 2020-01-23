@@ -13,7 +13,6 @@ p {
 .redacted {
   background-color: black;
   color: transparent;
-
 }
 
 .revealed {
@@ -21,11 +20,6 @@ p {
   color: red;
   text-decoration: underline;
 }
-
-.secret {
-  color: blue;
-}
-
 
 .found {
   color: green;
