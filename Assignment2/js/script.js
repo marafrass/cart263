@@ -5,7 +5,16 @@
 Redactive Reductionist
 Martin Hanses
 
-Write cool stuff here 
+I originally wanted to write a short paragraph to use instead of
+Lorem Ipsum, but ended up not having enough time. So I wrote a really
+fantastic joke instead. Probably the best joke I've ever written.
+
+Two truths are known about bread - one is that bread dislikes
+being kept in the cold, and the other is that bread is inherently
+revolutionary and prone to opposition.
+
+The reason for both of these truths is that bread is a counter-culture.
+
 
 *********************************************************************/
 //Create variable for spans
