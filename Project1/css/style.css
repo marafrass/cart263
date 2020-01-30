@@ -1,0 +1,40 @@
+body{
+  background-color: #dec97e;
+}
+
+#textbox{
+  background-color: #a89758;
+  float: right;
+  width: 33%;
+  height: 520px;
+  padding: 40px;
+}
+
+#imagebox{
+  float: left
+}
+
+img{
+  width: 500px;
+
+}
+
+#continue{
+  background-color: brown;
+  max-width: 50%;
+  padding: 10px;
+  float: bottom;
+
+}
+
+
+#dialogue{
+  font-family: 'Merriweather', serif;
+  padding-right: 50px;
+  padding-top: 100px;
+  padding-bottom: 10px;
+  max-height: 70%;
+  color: #262213;
+  overflow: scroll;
+
+}
