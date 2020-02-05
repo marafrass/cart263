@@ -16,17 +16,28 @@ let $dialogue;
 
 const boulderSFX = new Audio("assets/sounds/boulderRoll.wav");
 const windSFX = new Audio("assets/sounds/wind.wav");
+const clickSFX = new Audio("assets/sounds/click.wav");
 const music = new Audio("assets/sounds/Sisophys.wav");
 
 
 $(document).ready(setup);
 
 function setup() {
-
+  //fade in page
+  $('body').css('display', 'none');
+  $('body').fadeIn(2000);
+  //set all variables
   let $continue = $('#continue');
   $dialogue = $('#dialogue');
+  //Set up continue button, both to progress game and to change color on hover 
   $continue.click(progress);
+  $continue.hover(function(){
+    $(this).css("background-color", "red");
+    }, function(){
+    $(this).css("background-color", "brown");
+  });
 
+  //set appropriate audio to loop
   windSFX.loop = true;
   music.loop = true;
 
@@ -97,17 +108,21 @@ function createDialog(title, text, responseOne, responseTwo) {
       height: 400,
       width: 700,
       modal: true,
+
       buttons: {
         //Response one
         "I guess so": function() {
           $(this).dialog("close");
+          clickSFX.play();
           $dialogue.text(responseOne);
         },
         //Response two
         "Not really": function() {
           $(this).dialog("close");
+          clickSFX.play();
           $dialogue.text(responseTwo);
         }
       }
+
     });
 }
