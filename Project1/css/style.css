@@ -1,22 +1,29 @@
 body{
-  background-color: #dec97e;
+  background-color: black;
+}
+
+#container{
+  width: 100%;
+  height: 20%;
+
 }
 
 #textbox{
-  background-color: #a89758;
+  background-color: #23233a;
   float: right;
-  width: 33%;
-  height: 520px;
-  padding: 40px;
+  width: 30%;
+  height: 695px;
+  border: brown;
 }
 
 #imagebox{
+  width: 70%;
   float: left
 }
 
 img{
-  width: 500px;
-
+  width: 100%;
+  height:60%;
 }
 
 #continue{
@@ -24,9 +31,9 @@ img{
   max-width: 50%;
   padding: 10px;
   float: bottom;
-
+  color: white;
+  font-style: italic;
 }
-
 
 #dialogue{
   font-family: 'Merriweather', serif;
@@ -34,7 +41,21 @@ img{
   padding-top: 100px;
   padding-bottom: 10px;
   max-height: 70%;
-  color: #262213;
+  color: white;
   overflow: scroll;
+}
 
+.ui-dialog-title{
+    font-size: 110%;
+    height: 200;
+    color: black;
+}
+
+.ui-widget-overlay.ui-front { /* you want this */
+		opacity:.75;
+    color: black;
+	}
+
+.ui-dialog-titlebar-close {
+    visibility: hidden;
 }
