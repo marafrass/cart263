@@ -54,6 +54,9 @@ function setup() {
   //set appropriate audio to loop
   windSFX.loop = true;
   music.loop = true;
+  //Add the title to the image div
+  $('imagebox').text("BOULDER");
+
 }
 
 //progress()
@@ -69,10 +72,16 @@ function progress() {
   boulderSFX.play();
   windSFX.play();
 
+  spawnStuffBeautifully();
+
+
+
   //Sequence checks - these essentially check what the sequence value is,
   //and trigger appropriate reactions based on that. This is where all the
   //dialogue is stored.
   if (sequence === 1) {
+
+
     $dialogue.text("You've been trying to move the boulder for years, but somehow it feels different now. There's a strange, alien structure to your thoughts as you regard its lines and crevices; it is as if you're waiting for it to communicate.");
     $('img').fadeIn(2000);
 
@@ -130,6 +139,22 @@ function progress() {
   }
 }
 
+
+//spawnStuffBeautifully()
+//
+// A highly neccessary function which animates the text and continue button
+// to look ten times prettier.
+
+function spawnStuffBeautifully() {
+
+  //Prepare divs for animation
+  $dialogue.slideUp(1);
+  $continue.css('display', 'none');
+  //RELEASE THE ANIMATION KRAKEN
+  $dialogue.slideDown(500);
+  $continue.fadeIn(1000);
+
+}
 
 //createDialog()
 //
