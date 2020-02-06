@@ -44,7 +44,9 @@ img{
   font-family: 'Merriweather', serif;
   padding-top: 33%;
   max-height: 70%;
+  max-width: 60%;
   color: white;
+  font-size: 130%;
 }
 
 .ui-dialog-title{

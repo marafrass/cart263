@@ -71,16 +71,13 @@ function progress() {
   // sound effect, which in turn loops.
   boulderSFX.play();
   windSFX.play();
-
+  // spawn stuff, such as text and continue button, beautifully
   spawnStuffBeautifully();
-
-
 
   //Sequence checks - these essentially check what the sequence value is,
   //and trigger appropriate reactions based on that. This is where all the
   //dialogue is stored.
   if (sequence === 1) {
-
 
     $dialogue.text("You've been trying to move the boulder for years, but somehow it feels different now. There's a strange, alien structure to your thoughts as you regard its lines and crevices; it is as if you're waiting for it to communicate.");
     $('img').fadeIn(2000);
@@ -104,16 +101,16 @@ function progress() {
 
   } else if (sequence === 7) {
     $dialogue.text("...");
-    createDialog("Answer the boulder", "Of course it will matter. The boulder is an idiot; that much is clear. We've known that since long. We reach the peak, we sit and lean our back against the rock, and watch the sunset. Things get easy. You still believe that too, right?", 'Good, because that is the way it is. It has to be. It has to be.', 'Then why the fuck are we up here? You lie to yourself, Sisophys. Even if you do not believe the peak will satisfy that fantasy, you still believe it. You have to.');
+    createDialog("Answer the boulder", "Of course it will matter. The boulder is an idiot; that much is clear. We've known that since long. We reach the peak, we sit and lean our back against the rock, and watch the sunset. Things get easy. You still believe that too, right?", 'Good, because that is the way it is. It has to be. It has to be.', 'Then why the fuck are we up here? You lie to yourself, Sisophys. Even if you do not believe the peak will satisfy that fantasy, you still want to believe. You have to.');
 
   } else if (sequence === 8) {
     $dialogue.text("Hardened calluses brush up against the stone as you find your grip. Your legs settle into a familiar position as you ready your body. Push.");
 
   } else if (sequence === 9) {
-    $dialogue.text("An inch. A foot. A few. The boulder is moving.");
+    $dialogue.text("An inch. A foot. A few. The boulder is moving. The sun sets, and in that light, your coarse skin glistens with sweat and blood.");
 
   } else if (sequence === 10) {
-    $dialogue.text('BOULDER - "I am sorry, Sisophys, but you are not strong enough. There is no way in Hades we will both reach the peak. When you wake up tomorrow, I will drag us both down. That is my power - and frankly, Sisophys, I revel in it."');
+    $dialogue.text('BOULDER - "I am sorry, Sisophys, but you are not strong enough. There is no way in Hades we will both reach the peak. When you wake up tomorrow, I will drag us both down. That is my power - and frankly, Sisophys, I revel in it. You should rest. You need to rest - close your eyes. Let it happen."');
 
   } else if (sequence === 11) {
 
@@ -134,7 +131,7 @@ function progress() {
     createDialog("Make your decision", "We've been here before. This time, like any other, we prove our worth again. The boulder will see. It needs us. It wants to reach the peak, even if it doesn't know it. Go get the boulder, Sisophys. We don't have much choice, do we?", "You make your way down the hill, entertaining a glimmer of hope that this time, things will be different.", 'You make your way down the hill, entertaining a glimmer of hope that this time, things will be different.');
 
   } else if (sequence === 16) {
-    $dialogue.text("You make it roughly halfway up the hill until the boulder speaks to you again.");
+    $dialogue.text("You make it roughly halfway up the hill until the boulder speaks to you again. Hearing the first syllable, your heart skips a beat, as if you're flinching; bracing for a punch.");
     sequence = 2;
   }
 }
