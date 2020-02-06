@@ -1,10 +1,11 @@
 body{
-  background-color: black;
+  background-color: #23233a;
 }
 
 #container{
   width: 100%;
   height: 100%;
+
 
 }
 
@@ -12,13 +13,13 @@ body{
   background-color: #23233a;
   float: right;
   width: 30%;
-  height: 695px;
-  border: brown;
+  height: 100%;
+
 }
 
 #imagebox{
   width: 70%;
-  float: left
+  float: left;
 }
 
 img{
