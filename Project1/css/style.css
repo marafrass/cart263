@@ -55,11 +55,10 @@ img{
     color: black;
 }
 
-.ui-widget-overlay.ui-front {
-		opacity:.75;
-    color: black;
-	}
-
 .ui-dialog-titlebar-close {
     visibility: hidden;
+}
+
+.ui-widget-content {
+  font-size: 120%;
 }
