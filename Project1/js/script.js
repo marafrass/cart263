@@ -2,7 +2,7 @@
 
 /********************************************************************
 
-"Boulder"
+"Burden"
 
 Art, code and music by Martin Hanses
 
@@ -54,8 +54,6 @@ function setup() {
   //set appropriate audio to loop
   windSFX.loop = true;
   music.loop = true;
-  //Add the title to the image div
-  $('imagebox').text("BOULDER");
 
 }
 
@@ -80,6 +78,8 @@ function progress() {
   if (sequence === 1) {
 
     $dialogue.text("You've been trying to move the boulder for years, but somehow it feels different now. There's a strange, alien structure to your thoughts as you regard its lines and crevices; it is as if you're waiting for it to communicate.");
+    //remove the title and fade in "art"
+    $('#title').css('display', 'none');
     $('img').fadeIn(2000);
 
   } else if (sequence === 2) {
