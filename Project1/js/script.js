@@ -65,7 +65,7 @@ function progress() {
     $dialogue.text("The wind is arid and hot up here, and you feel your arms shaking, trembling - and just like that, the boulder starts to vibrate, like a shudder.");
 
   } else if (sequence === 3) {
-    $dialogue.text('BOULDER - "I know we have not talked much lately, if ever. I suppose I have not had much to say. You have not listened, either - maybe it is your fault."');
+    $dialogue.text('BOULDER - "We should talk. It has been quite a while since last, has it not? I suppose I have not had much to say. You have not listened, either - maybe it is your fault."');
 
   } else if (sequence === 4) {
     $dialogue.text("...");
@@ -91,9 +91,9 @@ function progress() {
       $dialogue.text("...")
     createDialog("Answer the boulder", "The boulder can claim whatever it pleases - we are the ones with power here. We can fix this. We can push the boulder. We can make things better. Fuck the boulder. It will see. We do not fail. We are right. We get it - do we not, Sisophys?", "Damn straight. Now put your back into it. Let's fuck this duck.", 'Listen here - be a fucking man, will you? The boulder will not roll itself up the damn hill. No one can do this but you. Only you can fix this.');
   } else if (sequence === 12) {
-    $dialogue.text("BOULDER - Alright, that worked!");
+    $dialogue.text("The hill turns into a mountain, giving you no respite: your left foot always lands on loose soil, and your right on jagged rock. Although your eyes dart between the boulder, the peak, and the ground, you have hardly enough time to really observe any one of them.");
   } else if (sequence === 13) {
-    $dialogue.text("BOULDER - Alright, that worked!");
+    $dialogue.text("Maybe it *is* a good idea to sit down for a second. You place yourself on the side of the boulder, pushing your back against it to prevent its descent.");
   } else if (sequence === 14) {
     $dialogue.text("You shut your eyes, just for a second - but it is too late. You fall asleep for hours, and when you come to, the boulder has tumbled down the mountain.");
   } else if (sequence === 15) {

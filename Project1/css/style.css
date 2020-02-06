@@ -53,7 +53,7 @@ img{
     color: black;
 }
 
-.ui-widget-overlay.ui-front { /* you want this */
+.ui-widget-overlay.ui-front {
 		opacity:.75;
     color: black;
 	}
