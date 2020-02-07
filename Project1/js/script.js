@@ -21,12 +21,13 @@ for geologists, basically.)
 let sequence = 0;
 let $dialogue;
 let $continue;
+let music;
 
 //set up sound effects
 const boulderSFX = new Audio("assets/sounds/boulderRoll.wav");
 const windSFX = new Audio("assets/sounds/wind.wav");
 const clickSFX = new Audio("assets/sounds/click.wav");
-const music = new Audio("assets/sounds/Sisyphys.wav");
+
 
 // When page has loaded, run setup()
 $(document).ready(setup);
@@ -35,6 +36,9 @@ $(document).ready(setup);
 //
 //Set up the game, essentially.
 function setup() {
+  //set up music
+  music = new Audio("assets/sounds/music.wav");
+
   //set body and image to invisible
   $('body').css('display', 'none');
   $('img').css('display', 'none');
