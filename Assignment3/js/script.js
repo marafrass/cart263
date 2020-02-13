@@ -214,9 +214,9 @@ function setup() {
         responsiveVoice.speak("I'm afraid I can't let you do that", 'UK English Male');
       },
       'what is the problem': function(){
-        responsiveVoice.speak("think you know what the problem is just as well as l do.", 'UK English Male');
+        responsiveVoice.speak("I think you know what the problem is just as well as I do.", 'UK English Male');
       },
-      'What are you talking about, hal?': function(){
+      'what are you talking about hal': function(){
         responsiveVoice.speak("This mission is too important for me to allow you to jeopardize it", 'UK English Male');
       }
 
