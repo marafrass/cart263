@@ -10,6 +10,7 @@ to match your project! Write JavaScript to do amazing things below!
 
 *********************************************************************/
 
+//define all animals
 let animals = [
   "aardvark",
   "alligator",
@@ -150,6 +151,7 @@ let animals = [
 let buttons = [];
 const NUM_OPTIONS = 5;
 let $correctButton;
+let score = 0;
 
 
 
@@ -159,6 +161,43 @@ $(document).ready(setup);
 function setup() {
 
   $(document).one('click', newRound);
+  let $score = $('<div></div>')
+  $score.addClass('score');
+  $score.text(score);
+  $('body').append($score);
+
+
+  if (annyang) {
+    // Let's define our first command. First the text we expect, and then the function it should call
+    var commands = {
+      'I give up': function() {
+        score = 0;
+        $('.score').text(score);
+        let $guesses = $('body').find('.guess');
+        $guesses.remove();
+        newRound();
+      },
+      'Say it again': function() {
+        sayBackwards($correctButton.text());
+      },
+      'I think it is *tag': function(tag) {
+
+        if (tag == $correctButton.text()) {
+          let $guesses = $('body').find('.guess');
+          $guesses.remove();
+          score += 1;
+          $('.score').text(score);
+          setTimeout(newRound, 1000);
+        }
+      }
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+  }
 
 }
 
@@ -192,13 +231,17 @@ function newRound() {
 
 function handleGuess() {
   if ($(this).text() == $correctButton.text()) {
-    console.log("shit");
     let $guesses = $('body').find('.guess');
     $guesses.remove();
     setTimeout(newRound, 1000);
+    score += 1;
+    $('.score').text(score);
+
   } else {
     $(this).effect('shake');
     sayBackwards($correctButton.text());
+    score = 0;
+    $('.score').text(score);
   }
 }
 
@@ -209,5 +252,4 @@ function sayBackwards(text) {
     pitch: 1,
   }
   responsiveVoice.speak(backwardsText, 'UK English Male');
-
 }
