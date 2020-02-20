@@ -15,4 +15,32 @@ $(document).ready(setup);
 
 function setup() {
 
+  let newDiv = (document).createElement('div');
+  console.log("test");
+
+  $('body').text("Testing Testing");
+
+  if (annyang) {
+
+  var commands = {
+    'does it work': function() {
+        $('body').text("it workds");
+    },
+    'this is *tag': function(tag) {
+        $('body').text(tag);
+    }
+
+  };
+
+  annyang.addCommands(commands);
+
+   annyang.start();
+}
+
+
+}
+
+function mouseClicked(){
+
+  responsiveVoice.speak("hello world");
 }
