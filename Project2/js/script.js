@@ -37,10 +37,11 @@ function setup() {
    annyang.start();
 }
 
+$('body').click(speak);
 
 }
 
-function mouseClicked(){
+function speak(){
 
   responsiveVoice.speak("hello world");
 }
