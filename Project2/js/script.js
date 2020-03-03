@@ -27,6 +27,7 @@ function setup() {
     var commands = {
       'start game': function() {
         speak("welcome to the quality and value monitoring bureau! Please, introduce yourself!");
+          $('#textboxText').text('Be polite! "My name is..."');
         setTimeout(function() {
           gameState += 1;
         }, 200);
@@ -38,6 +39,8 @@ function setup() {
           gameState += 1;
           speak(("Nice to meet you, " + tag));
           speak("Shall we get started with today's video titles?")
+          $('#textboxText').text('Be polite! "Yes, please."');
+
           console.log(gameState);
         }
 
@@ -48,6 +51,7 @@ function setup() {
           speak("Alright, here's a video idea  I came up with!")
           suggestion();
           speak("What do you think? Good or bad?");
+
           gameState += 1;
         } else {
           console.log("wrong state");
@@ -64,6 +68,8 @@ function setup() {
       'Bad': function() {
         if (gameState === 3) {
           speak("Oh no! In one word, what would you say the major issue with this title is?")
+          $('#textboxText').text('Say "It is..."');
+
           setTimeout(function() {
             gameState = 11;
           }, 1000);
@@ -73,6 +79,8 @@ function setup() {
         if (gameState === 11) {
           adjectiveInQuestion = tag;
           speak("You don't think children would enjoy something " + tag + "?")
+          $('#textboxText').text('Yes/No');
+
           setTimeout(function() {
             gameState += 1;
           }, 200);
@@ -82,6 +90,8 @@ function setup() {
       'no': function(){
         if(gameState === 12){
         speak("Very well! Thank you for your input. Would you like to hear my next suggestion?")
+        $('#textboxText').text('Be polite! "Yes, please."');
+
         setTimeout(function() {
           gameState = 2;
         }, 500);
@@ -89,7 +99,9 @@ function setup() {
     },
     'yes': function(){
       if(gameState === 12){
-      speak("I thought so too. I would love it if someone called me ${adjectiveInQuestion}")
+      speak("I thought so too. I would love it if someone called me ${adjectiveInQuestion}. Would you like to hear my next suggestion?")
+      $('#textboxText').text('Be polite! "Yes, please."');
+
       setTimeout(function() {
         gameState = 2;
       }, 500);
