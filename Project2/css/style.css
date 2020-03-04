@@ -3,13 +3,19 @@ background-color: grey;
 }
 
 #backdrop {
-  padding: 100px;
+  padding: 50px;
   border-radius: 10px;
 
   height: 300px;
-  background-color: red;
+  background-color: brown;
   align-self: center;
   width:800px; margin:0 auto;
+}
+
+#title {
+  font-size: 25px;
+  padding-bottom: 10px;
+
 }
 
 #textbox {
@@ -17,13 +23,13 @@ background-color: grey;
   float: right;
   height: 230px;
   width:500px;
-  background-color: blue;
+  background-color: khaki;
 
 }
 #textboxText{
   padding: 10px;
   font-size: 30px;
-  color: white;
+  color: brown;
 }
 
 #aiPortrait {
@@ -38,14 +44,12 @@ background-color: grey;
 
 .flex-container {
   align-self: center;
-  background-color: blue;
+  background-color: beige;
   padding: 20px;
   display: flex;
   flex-direction: column;
   padding: 10px;
   border-radius: 10px;
-
-  background-color: red;
   align-self: center;
   width:690px; margin:0 auto;
 }

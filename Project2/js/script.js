@@ -2,19 +2,21 @@
 
 /********************************************************************
 
-Title of Project
-Author Name
+"The Children's Entertainment Automated Monitoring Bureau"
+by Martin Hanses
+
+
 
 This is a template. Fill in the title, author, and this description
 to match your project! Write JavaScript to do amazing things below!
 
 *********************************************************************/
-
+//run setup when document has loaded
 $(document).ready(setup);
 
-
+//variable to track which state the game is in
 let gameState = 0;
-
+//globabl variables for speech and text, as well as tracking values for what the player has accepted/refused
 let adjectiveInQuestion = "";
 let currentSuggestion = "";
 let acceptedTitleAmount = 0;
@@ -23,14 +25,15 @@ let rejectedTitleAmount = 0;
 
 function setup() {
 
-  console.log("test");
+  
 
   if (annyang) {
 
     var commands = {
       'start game': function() {
         if (gameState === 0) {
-          speak("Thank you for being a human volunteer to the children's entertainment monitoring bureau. With your help, we are hoping to improve childrens online programming in an efficient and modern way. Please, introduce yourself!");
+          setPortrait("question");
+          speak(computerLines[1]);
           boxWrite('Say "My name is..."!');
           setTimeout(function() {
             gameState += 1;
@@ -41,9 +44,9 @@ function setup() {
 
       'my name is *tag': function(tag) {
         if (gameState === 1) {
+          setPortrait("elated");
           gameState += 1;
-          speak(("Nice to meet you, " + tag));
-          speak("Shall we get started with today's video titles?")
+          speak(("Nice to meet you, " + tag + "! Shall we get started with today's video titles?"));
           boxWrite('Be polite! "My name is..."');
         }
 
@@ -51,15 +54,17 @@ function setup() {
 
       'yes please': function() {
         if (gameState == 2) {
-          speak("Alright, here's a video idea  I came up with!");
+          setPortrait("question");
+          speak(computerLines[2]);
           suggestion();
-          speak("What do you think? Good or bad?");
+          speak(computerLines[4]);
           gameState += 1;
         }
       },
 
       'could you repeat that': function() {
         if (gameState == 3) {
+          setPortrait("veryHappy");
           speak("Sure thing!");
           speak(currentSuggestion);
           speak("So? Good or bad?");
@@ -69,27 +74,29 @@ function setup() {
       'Good': function() {
         if (gameState === 3) {
           if (acceptedTitleAmount < 3) {
-            speak("Great! I'll add that to the company channel.");
+            setPortrait("elated");
+            speak(computerLines[3]);
             addCurrentTitle();
             acceptedTitleAmount += 1;
             gameState = 2;
-            if(acceptedTitleAmount === 3){
+            if (acceptedTitleAmount === 3) {
               endGame();
             } else {
-              speak("Would you like to hear my next suggestion?");
+              speak(computerLines[0]);
 
             }
           } else {
             //failsafe function in case game bugs out and lets the player pick another option.
-            speak("Uh oh! Looks like you've already filled your quota! It was a pleasure working with you. Have a nice day.");
-              endGame();
+            speak(computerLines[5]);
+            endGame();
           }
         }
       },
 
       'Bad': function() {
         if (gameState === 3) {
-          speak("Oh no! In one word, what would you say the major issue with this title is?")
+          setPortrait("quiz");
+          speak(computerLines[6])
           boxWrite('Say "it is..."');
           gameState = 11;
         };
@@ -98,6 +105,7 @@ function setup() {
       'it is *tag': function(tag) {
         if (gameState === 11) {
           adjectiveInQuestion = tag;
+          setPortrait("neutral");
           speak("Well, I think children would enjoy something " + tag + ". Do you agree?")
           boxWrite('Answer "yes" or "no"!');
           setTimeout(function() {
@@ -107,12 +115,13 @@ function setup() {
       },
 
       'no': function() {
-        if(rejectedTitleAmount >= 3){
-          speak("Oh dear! It looks like you haven't been able to decide on a number of titles quickly enough to keep our children safe. I will now instead automatically generate the rest of the titles to fill the quota.")
+        if (rejectedTitleAmount >= 3) {
+          speak(computerLines[7])
           generateRemainingTitles();
           endGame();
         } else if (gameState === 12 && rejectedTitleAmount < 3) {
-          speak("Very well! Thank you for your input. Would you like to hear my next suggestion?")
+          setPortrait("annoyed");
+          speak(computerLines[8])
           boxWrite('Be polite! "My name is..."');
           rejectedTitleAmount += 1;
           setTimeout(function() {
@@ -122,6 +131,7 @@ function setup() {
       },
       'yes': function() {
         if (gameState === 12) {
+          setPortrait("veryHappy");
           speak(("I thought so too. I would love it if someone called me " + adjectiveInQuestion + ". I will add this title to our list. Would you like to hear my next suggestion?"))
           boxWrite('Be polite! "My name is..."');
           addCurrentTitle();
@@ -166,7 +176,7 @@ function suggestion() {
 //findRandomEntry()
 //
 //Simple function to find a random entry in any array and then return the result
-function findRandomEntry(array){
+function findRandomEntry(array) {
   let x = array[Math.floor(Math.random() * array.length)]
   return x;
 }
@@ -174,32 +184,40 @@ function findRandomEntry(array){
 //endGame()
 //
 //Function to show the endgame result.
-function endGame(){
-speak("Those are all the titles we need for today. Thank you so much for helping us provide our children with curated quality content. Have a pleasant evening.");
-$('#textboxText').text('Thanks for your help!');
-gameState = 20;
+function endGame() {
+  speak(computerLines[9]);
+  $('#textboxText').text('Thanks for your help!');
+  gameState = 20;
 
 }
 
 //boxWrite()
 //
 //function to write text into the dialogue box (just to keep code cleaner)
-function boxWrite(entry){
+function boxWrite(entry) {
   $('#textboxText').text(entry);
 }
 //addCurrentTitle())
 //
 //function to add accepted titles into the list.
-function addCurrentTitle(){
+function addCurrentTitle() {
   $(".flex-container").append("<div>- " + currentSuggestion + "</div>");
 }
 
 //generateRemainingTitles()
 //
 //Function that does what it says - basically fills in any titles the player hasn't filled in yet.
-function generateRemainingTitles(){
-  for(let i = 0; i < (3 - acceptedTitleAmount); i++){
+function generateRemainingTitles() {
+  for (let i = 0; i < (3 - acceptedTitleAmount); i++) {
     suggestion();
     addCurrentTitle();
-    }
+  }
+}
+
+//setPortrait()
+//
+//simple function that sets portrait of AI based on parameters given
+function setPortrait(emotion) {
+  document.getElementById("portrait").src = "assets/images/" + emotion + ".PNG";
+
 }
