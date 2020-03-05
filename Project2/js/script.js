@@ -7,34 +7,52 @@ by Martin Hanses
 
 
 
-This is a template. Fill in the title, author, and this description
-to match your project! Write JavaScript to do amazing things below!
 
 *********************************************************************/
+
 //run setup when document has loaded
 $(document).ready(setup);
 
 //variable to track which state the game is in
-let gameState = 0;
-//globabl variables for speech and text, as well as tracking values for what the player has accepted/refused
+let gameState = -1;
+
+//global variables for speech and text, as well as tracking values for what the player has accepted/refused
 let adjectiveInQuestion = "";
 let currentSuggestion = "";
 let acceptedTitleAmount = 0;
 let rejectedTitleAmount = 0;
 
+//set the ding sound effect to a variable for easy access within Howler
+var dingSFX = new Howl({
+  src: ['assets/sounds/ding.mp3']
+});
 
+//function setup()
+//
+//set things up
+//note for later: comment out needless comments
 function setup() {
+  //set intro text
+  boxWrite("Click here to activate audio and voice!")
+  // when body is clicked, the game is ready to go.
+  $('body').click(function() {
+    if (gameState === -1) {
+      gameState = 0;
+      boxWrite('Great! Now say "Start Game!"');
+      dingSFX.play();
+    }
+  })
 
-  
-
+  //set up all annyang commands
   if (annyang) {
 
     var commands = {
       'start game': function() {
         if (gameState === 0) {
+          dingSFX.play();
           setPortrait("question");
-          speak(computerLines[1]);
-          boxWrite('Say "My name is..."!');
+          speak(lineIntroLine);
+          boxWrite(boxTextTutorial1);
           setTimeout(function() {
             gameState += 1;
           }, 200);
@@ -44,26 +62,28 @@ function setup() {
 
       'my name is *tag': function(tag) {
         if (gameState === 1) {
+          dingSFX.play();
           setPortrait("elated");
           gameState += 1;
           speak(("Nice to meet you, " + tag + "! Shall we get started with today's video titles?"));
-          boxWrite('Be polite! "My name is..."');
+          boxWrite(boxTextTutorial2);
         }
-
       },
 
       'yes please': function() {
         if (gameState == 2) {
+          dingSFX.play();
           setPortrait("question");
-          speak(computerLines[2]);
+          speak(lineSuggestionForVid);
           suggestion();
-          speak(computerLines[4]);
+          speak(lineQualityQuery);
           gameState += 1;
         }
       },
 
       'could you repeat that': function() {
         if (gameState == 3) {
+          dingSFX.play();
           setPortrait("veryHappy");
           speak("Sure thing!");
           speak(currentSuggestion);
@@ -74,40 +94,38 @@ function setup() {
       'Good': function() {
         if (gameState === 3) {
           if (acceptedTitleAmount < 3) {
+            dingSFX.play();
             setPortrait("elated");
-            speak(computerLines[3]);
+            speak(lineAcceptedSuggestion);
             addCurrentTitle();
             acceptedTitleAmount += 1;
             gameState = 2;
             if (acceptedTitleAmount === 3) {
               endGame();
             } else {
-              speak(computerLines[0]);
-
+              speak(querySuggest);
             }
-          } else {
-            //failsafe function in case game bugs out and lets the player pick another option.
-            speak(computerLines[5]);
-            endGame();
           }
         }
       },
 
       'Bad': function() {
         if (gameState === 3) {
+          dingSFX.play();
           setPortrait("quiz");
-          speak(computerLines[6])
-          boxWrite('Say "it is..."');
+          speak(lineQueryWhatIsWrong)
+          boxWrite('Be clear! Say "It is..."');
           gameState = 11;
         };
-
       },
+
       'it is *tag': function(tag) {
         if (gameState === 11) {
+          dingSFX.play();
           adjectiveInQuestion = tag;
           setPortrait("neutral");
           speak("Well, I think children would enjoy something " + tag + ". Do you agree?")
-          boxWrite('Answer "yes" or "no"!');
+          boxWrite(boxTextTutorial6);
           setTimeout(function() {
             gameState += 1;
           }, 200);
@@ -116,39 +134,38 @@ function setup() {
 
       'no': function() {
         if (rejectedTitleAmount >= 3) {
-          speak(computerLines[7])
+          dingSFX.play();
+          speak(lineTooManyRejected)
           generateRemainingTitles();
           endGame();
         } else if (gameState === 12 && rejectedTitleAmount < 3) {
           setPortrait("annoyed");
-          speak(computerLines[8])
-          boxWrite('Be polite! "My name is..."');
+          speak(lineFinalRejection)
+          boxWrite(boxTextTutorial4);
           rejectedTitleAmount += 1;
           setTimeout(function() {
             gameState = 2;
           }, 500);
         }
       },
+
       'yes': function() {
         if (gameState === 12) {
+          dingSFX.play();
           setPortrait("veryHappy");
           speak(("I thought so too. I would love it if someone called me " + adjectiveInQuestion + ". I will add this title to our list. Would you like to hear my next suggestion?"))
-          boxWrite('Be polite! "My name is..."');
+          boxWrite(boxTextTutorial5);
           addCurrentTitle();
           acceptedTitleAmount += 1;
           setTimeout(function() {
             gameState = 2;
           }, 500);
         };
-
       }
     }
-
     annyang.addCommands(commands);
-
     annyang.start();
   };
-
 }
 
 //speak()
@@ -172,7 +189,6 @@ function suggestion() {
   $('#textboxText').text(currentSuggestion);
 }
 
-
 //findRandomEntry()
 //
 //Simple function to find a random entry in any array and then return the result
@@ -185,10 +201,10 @@ function findRandomEntry(array) {
 //
 //Function to show the endgame result.
 function endGame() {
-  speak(computerLines[9]);
-  $('#textboxText').text('Thanks for your help!');
+  dingSFX.play();
+  speak(lineEndGame);
+  boxWrite(boxTextEndGame);
   gameState = 20;
-
 }
 
 //boxWrite()
@@ -219,5 +235,4 @@ function generateRemainingTitles() {
 //simple function that sets portrait of AI based on parameters given
 function setPortrait(emotion) {
   document.getElementById("portrait").src = "assets/images/" + emotion + ".PNG";
-
 }

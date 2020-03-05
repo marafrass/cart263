@@ -1,64 +1,79 @@
 body {
-background-color: grey;
+  background-color: #2e1d0c;
 }
 
 #backdrop {
+  background-image: url(https://sitngoholdempoker.typepad.com/.a/6a00e00992ac09883301bb079c4add970d-pi);
+  background-size: cover;
   padding: 50px;
   border-radius: 10px;
-
   height: 300px;
   background-color: brown;
   align-self: center;
-  width:800px; margin:0 auto;
+  width: 800px;
+  margin: 0 auto;
 }
 
 #title {
-  font-size: 25px;
+  font-family: 'Asap Condensed', sans-serif;
+  color: white;
+  font-size: 37px;
   padding-bottom: 10px;
-
 }
 
 #textbox {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 25px;
   float: right;
   height: 230px;
-  width:500px;
+  width: 500px;
   background-color: khaki;
-
 }
-#textboxText{
+
+#textboxText {
+  font-family: 'Asap Condensed', sans-serif;
   padding: 10px;
   font-size: 30px;
   color: brown;
 }
 
 #aiPortrait {
+  border-radius: 25px;
   border-style: solid;
-  border: 10px;
+  border: 100px;
   border-color: black;
   float: left;
   height: 250px;
-  width:250px;
-  background-color: white;
+  width: 250px;
+}
+
+#portrait {
+  border-radius: 25px;
 }
 
 .flex-container {
   align-self: center;
-  background-color: beige;
+  background-color: #704111;
   padding: 20px;
   display: flex;
   flex-direction: column;
   padding: 10px;
   border-radius: 10px;
   align-self: center;
-  width:690px; margin:0 auto;
+  width: 690px;
+  margin: 0 auto;
 }
 
-.flex-container > div {
+.flex-container>div {
+  font-family: 'Asap Condensed', sans-serif;
+  border-radius: 10px;
   align-items: center;
   align-self: center;
   background-color: #f1f1f1;
-  width:600px; margin:0 auto;
-  padding: 2px;
+  width: 600px;
+  margin: 5 auto;
+  padding: 7px;
   font-size: 30px;
 }
