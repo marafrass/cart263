@@ -197,6 +197,7 @@ function setup() {
         };
       }
     }
+    //add the previous commands to annyang and initialize it 
     annyang.addCommands(commands);
     annyang.start();
   };
@@ -211,7 +212,7 @@ function speak(tag) {
 
 //suggestion()
 //
-//function to create a full sentence by picking entries from a number of arrays, speak the entry, and enter it as text in the textbox 
+//function to create a full sentence by picking entries from a number of arrays, speak the entry, and enter it as text in the textbox
 function suggestion() {
   let randomAdjective = findRandomEntry(adjectives);
   let randomAgent = findRandomEntry(agents);
@@ -220,7 +221,7 @@ function suggestion() {
   let randomEnding = findRandomEntry(endings);
   currentSuggestion = (randomAdjective + " " + randomAgent + " " + randomVerb + " " + randomPreposition + " " + randomEnding);
   speak(currentSuggestion);
-  $('#textboxText').text(currentSuggestion);
+  boxWrite(currentSuggestion + '  \n (If you would like to hear this again, say "Could you repeat that?")')
 }
 
 //findRandomEntry()
