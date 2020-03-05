@@ -5,7 +5,38 @@
 "The Children's Entertainment Automated Monitoring Bureau"
 by Martin Hanses
 
+Welcome to the CEAMB's public curation initiative!
 
+The management and myself would like to congratulate you on your spectacular
+decision in choosing to provide costless, efficient labor by joining our
+volunteer program.
+
+I know what you're all thinking - is this somehow tax deductible? The answer is a
+resounding no, but feel free to help yourself to our complimentary fruit bowl
+in the exit corridor. Please limit your inhibitions to one (1) fruit each.
+
+How exactly will this volunteering experience play out, you ask? Our technicians
+assure us it is incredibly complex and cutting-edge, but in the interest of time
+and a general distrust of nerds, we'd like to simplify the process into these
+simple, marketable steps:
+
+1. Start the program! Take a moment to relax, and then activate the AI with a
+click, and then speak loud and clear "Start game." (NOTE: This is *not* a game.
+By having fun with this experience, you are aggressively non-complying with
+company policy, and your rights to personal space and not being attacked by
+bipedal robots are forfeit.)
+
+2. Follow instructions! The AI will provide you with suggestions for titles -
+make sure to mark them all as good, in the interest of efficiency. If you do,
+for some strange traitorous reason, decide to reject a title, please provide a
+reason for doing so and then withdraw that complaint immediately.
+
+3. Finish quickly and efficiently! On your way out, make sure to reconsider if
+you truly need a fruit from the complimentary basket. We, the management,
+are very averse to the idea of non-deserving frugivores.
+
+Jermaine McCluhan,
+CEO of CEAMB and subsidiaries.
 
 
 *********************************************************************/
@@ -47,6 +78,9 @@ function setup() {
   if (annyang) {
 
     var commands = {
+
+      //All commands set the textbox text, set a line for the computer to read, change the game state, and change the AI portrait.
+
       'start game': function() {
         if (gameState === 0) {
           dingSFX.play();
@@ -177,7 +211,7 @@ function speak(tag) {
 
 //suggestion()
 //
-//function to create a full sentence by picking entries from a number of arrays, speak the entry, and enter it as text
+//function to create a full sentence by picking entries from a number of arrays, speak the entry, and enter it as text in the textbox 
 function suggestion() {
   let randomAdjective = findRandomEntry(adjectives);
   let randomAgent = findRandomEntry(agents);
