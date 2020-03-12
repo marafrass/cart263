@@ -1,3 +1,12 @@
+//Assignment 4
+//
+//CONDIMENT CACOPHONY
+//
+//I'm a dog person.
+//
+//Code by Martin Hanses
+
+
 $(document).ready(setup);
 
 //greate global variable to save the JSON data in
@@ -22,7 +31,6 @@ function setup() {
 //
 //Creates a message to display
 function dataLoaded(data) {
-
   createMessage(data);
   dataInUse = data;
 }
@@ -38,7 +46,7 @@ function dataError(request, textStatus, error) {
 //
 //Picks a random element from an array
 function getRandomElement(array) {
-
+  //randomize array entry based on length and then floor it because the cops are after us
   let element = array[Math.floor(Math.random() * (array.length))]
   return element;
 }
@@ -76,7 +84,6 @@ function createMessage(data) {
 
   // put together the message based on the randomized entries
   let message = `${randomCondiment} ${verb} like ${preposition} ${randomCat} in ${randomRoom}, listening to ${randomGenre} while reading ${randomBook}. It's dumb and I don't like it.`;
-
   //add the message to the page
   $('body').text(message);
 };
