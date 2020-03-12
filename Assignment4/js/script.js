@@ -75,6 +75,13 @@ function createMessage(data) {
   //find random room from array
   let randomRoom = getRandomElement(data.rooms)
   console.error(randomRoom);
+  
+  //Set the second preposition based on whether or not the room starts with a vowel
+  let preposition2 = "a";
+  if (isFirstLetterVowel(randomRoom)) {
+    preposition2 = "an";
+  }
+
   //find random music genre from array
   let randomGenre = getRandomElement(data.genres)
   console.error(randomGenre);
@@ -83,7 +90,7 @@ function createMessage(data) {
   console.error(randomBook.title);
 
   // put together the message based on the randomized entries
-  let message = `${randomCondiment} ${verb} like ${preposition} ${randomCat} in ${randomRoom}, listening to ${randomGenre} while reading ${randomBook}. It's dumb and I don't like it.`;
+  let message = `${randomCondiment} ${verb} like ${preposition} ${randomCat} in ${preposition2} ${randomRoom}, listening to ${randomGenre} while reading ${randomBook}. It's dumb and I don't like it.`;
   //add the message to the page
   $('body').text(message);
 };
@@ -92,6 +99,6 @@ function createMessage(data) {
 //
 // Check whether or not the entry begins with a vowel - returns a boolean
 function isFirstLetterVowel(entry) {
-  let vowels = ["A", "E", "I", "O", "U", "Å", "Ä", "Ö"];
+  let vowels = ["A", "a", "E", "e", "I", "i", "O", "o", "U", "u", "Å", "å", "Ä", "ä", "Ö", "ö"];
   return vowels.includes(entry.charAt(0));
 }
