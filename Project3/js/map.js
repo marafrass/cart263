@@ -10,11 +10,21 @@ function createMap() {
 
   for (let i = 0; i < mapTileHeight; i++) {
     for (let i = 0; i < mapTileWidth; i++) {
-      $(".canvas").append(`<div class=tile> ${tileNumber}, ${rowNumber}</div>`);
+      let tileID = `${rowNumber}-${tileNumber}`
+      $(".canvas").append(`<div class=tile id=${tileID}> ${tileID}</div>`);
       tileNumber += 1;
     };
     tileNumber = 0;
     rowNumber += 1;
   };
 
-}
+  console.log("tiles completed");
+  console.log("Assigning terrain");
+
+  let initGrassTile = 5;
+
+
+
+
+
+};
