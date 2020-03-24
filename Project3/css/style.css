@@ -18,10 +18,16 @@ padding: 10px;
   width: 80px;
   height: 80px;
   border: solid;
+  border-width: thin;
   padding-bottom: 4px;
   border-radius: 4px;
   border-color: black;
   background-color: white;
   description: "tileID here ";
+}
 
+.tile_hover {
+  width: 100px;
+  border-color: white;
+  border-radius: 5px;
 }

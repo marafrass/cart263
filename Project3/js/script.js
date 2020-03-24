@@ -16,5 +16,13 @@ $(document).ready(setup);
 function setup() {
 
   createMap();
+  assignGrass();
+  setUpControls();
 
 }
+
+function setUpControls(){
+
+  $('.tile').hover(function(){$(this).toggleClass('.tile_hover');});
+
+};
