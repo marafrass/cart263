@@ -3,8 +3,9 @@ let mapTileHeight = 18;
 let initGrassTile = 20;
 
 let allTilesIDs = [];
-let grassTilesIDs = [];
+
 let waterTilesIDs = [];
+  let grassTilesIDs = [];
 
 function createMap() {
 
@@ -38,7 +39,7 @@ function createMap() {
 
 function assignGrass() {
 
-  let grassTilesIDs = [];
+
   let surroundingGrass = -2;
 
   for (let i = 0; i < initGrassTile; i++) {
@@ -70,7 +71,7 @@ function assignGrass() {
   //make tiles green
   for (let i = 0; i < grassTilesIDs.length; i++) {
     $(grassTilesIDs[i]).css('background-color', 'green');
-
+    console.log("Grass tiles assigned.")
   };
 
 };

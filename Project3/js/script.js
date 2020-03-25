@@ -21,8 +21,27 @@ function setup() {
 
 }
 
-function setUpControls(){
+function setUpControls() {
 
-  $('.tile').hover(function(){$(this).toggleClass('.tile_hover');});
+
+  //Set up mouse hover effect
+  $(".tile")
+    .mouseover(function() {
+      $(this).css("border-color", "white");
+    })
+    .mouseout(function() {
+      $(this).css("border-color", "black");
+    });
+  $(".tile")
+    .click(function() {
+      let currentTileID = $(this).attr("id");
+
+      if ((grassTilesIDs.includes(`#${currentTileID}`)) === true) {
+        $(this).css("background-image", "url(assets/images/house.png)");
+        console.log(`City built on ${currentTileID}!`)
+      } else {
+        console.error("Can't build here!")
+      }
+    });
 
 };

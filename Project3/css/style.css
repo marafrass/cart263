@@ -1,20 +1,18 @@
 body {
-background-color: black;
-padding: 10px;
+  background-color: black;
+  padding: 10px;
 }
 
 .canvas {
-
   background-color: blue;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto
-    auto ;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
   background-color: black;
   padding: 0px;
-
 }
 
 .tile {
+  font-size: 12px;
   width: 80px;
   height: 80px;
   border: solid;
@@ -22,12 +20,8 @@ padding: 10px;
   padding-bottom: 4px;
   border-radius: 4px;
   border-color: black;
+  background-image: none;
+  background-size: 80px;
   background-color: white;
   description: "tileID here ";
-}
-
-.tile_hover {
-  width: 100px;
-  border-color: white;
-  border-radius: 5px;
 }
