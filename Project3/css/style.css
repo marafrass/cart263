@@ -25,3 +25,25 @@ body {
   background-color: white;
   description: "tileID here ";
 }
+
+.panel {
+  background-color: white;
+  position: fixed;
+  height: 250px;
+  width: 40%;
+  top: 80%;
+  left: 78%;
+  padding: 20px;
+  transform: translate(-50%, 0);
+}
+
+#tileinfopanel {
+  background-color: grey;
+  width: 400px;
+  height: 100px;
+
+}
+
+#tileinfotext {
+  padding: 8px;
+}
