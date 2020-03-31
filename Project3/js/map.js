@@ -5,7 +5,7 @@ let initGrassTile = 20;
 let allTilesIDs = [];
 
 let waterTilesIDs = [];
-  let grassTilesIDs = [];
+let grassTilesIDs = [];
 
 function createMap() {
 
@@ -19,6 +19,13 @@ function createMap() {
       let tileID = `${tileNumber}-${rowNumber}`
       $(".canvas").append(`<div class=tile id=${tileID}> ${tileID}</div>`);
       tileNumber += 1;
+      $(`#${tileID}`).data("info",{
+        type: "Water",
+        terrain: "Salt Water",
+        building: "Nothing",
+        id: tileID
+
+      });
 
       allTilesIDs.push(tileID);
 
@@ -38,9 +45,6 @@ function createMap() {
 };
 
 function assignGrass() {
-
-
-  let surroundingGrass = -2;
 
   for (let i = 0; i < initGrassTile; i++) {
     let randomTileX = Math.floor(Math.random() * mapTileWidth);
@@ -71,6 +75,7 @@ function assignGrass() {
   //make tiles green
   for (let i = 0; i < grassTilesIDs.length; i++) {
     $(grassTilesIDs[i]).css('background-color', 'green');
+    $(grassTilesIDs[i]).data("")
     console.log("Grass tiles assigned.")
   };
 

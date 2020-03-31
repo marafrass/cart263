@@ -36,8 +36,10 @@ function setUpControls() {
 
       let tileTerrain = checkTile();
 
-      $("#tileinfotext").text(` ${currentTileID}
-        ${tileTerrain}` );
+      $("#tileinfotext")
+      .text($(this).data("info").terrain + ", " +
+      $(this).data("info").type  + ", " +
+      $(this).data("info").id);
     })
     .mouseout(function() {
       $(this).css("border-color", "black");
