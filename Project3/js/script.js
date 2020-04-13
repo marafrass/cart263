@@ -16,6 +16,7 @@ let currentTileID;
 let response;
 
 
+
 function setup() {
 
   createMap();
@@ -54,39 +55,13 @@ function setUpControls() {
     });
 
   $(".tile")
-    .click(buildMenu);
+    .click(function(){
 
-};
-
-
-
-function createDialog(title, text, responseOne, responseTwo) {
-
-  //create the HTML for the dialog using the set parameters
-  return $("<div class='dialog' title='" + title + "'><p>" + text + "</p></div>")
-    //Set dimensions of the dialog
-    .dialog({
-      height: 400,
-      width: 300,
-      modal: true,
-      //set buttons for the responses
-      buttons: {
-        //Response one
-        Yes: function() {
-          $(this).dialog("close");
-          buildCity();
-        },
-        //Response two
-        No: function() {
-          $(this).dialog("close");
-          response = false;
-          return response;
-
-        }
-      }
+      clickedTile = $(this).attr("id");
+      buildMenu();
     });
 
-}
+};
 
 
 function checkTile(){

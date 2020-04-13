@@ -26,10 +26,21 @@ body {
   description: "tileID here ";
 }
 
+.options {
+  background-color: white;
+  position: fixed;
+  height: 50%;
+  width: 10%;
+  top: 50%;
+  left: 0%;
+  padding: 20px;
+  transform: translate(-50%, 0);
+}
+
 .panel {
   background-color: white;
   position: fixed;
-  height: 250px;
+  height: 25%;
   width: 40%;
   top: 80%;
   left: 78%;
