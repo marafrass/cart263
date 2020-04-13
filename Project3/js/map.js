@@ -19,12 +19,10 @@ function createMap() {
       let tileID = `${tileNumber}-${rowNumber}`
       $(".canvas").append(`<div class=tile id=${tileID}> ${tileID}</div>`);
       tileNumber += 1;
-      $(`#${tileID}`).data("info",{
-        type: "Water",
-        terrain: "Salt Water",
-        building: "Nothing",
-        id: tileID
-
+      $(`#${tileID}`).data("info", {
+        building: "No building",
+        x: tileNumber - 1,
+        y: rowNumber
       });
 
       allTilesIDs.push(tileID);
@@ -50,33 +48,33 @@ function assignGrass() {
     let randomTileX = Math.floor(Math.random() * mapTileWidth);
     let randomTileY = Math.floor(Math.random() * mapTileHeight);
     //diagonal tiles
-    grassTilesIDs.push(`#${randomTileX}-${randomTileY}`);
-    grassTilesIDs.push(`#${randomTileX+1}-${randomTileY+1}`);
-    grassTilesIDs.push(`#${randomTileX+1}-${randomTileY-1}`);
-    grassTilesIDs.push(`#${randomTileX-1}-${randomTileY+1}`);
-    grassTilesIDs.push(`#${randomTileX-1}-${randomTileY-1}`);
+    grassTilesIDs.push(`${randomTileX}-${randomTileY}`);
+    grassTilesIDs.push(`${randomTileX+1}-${randomTileY+1}`);
+    grassTilesIDs.push(`${randomTileX+1}-${randomTileY-1}`);
+    grassTilesIDs.push(`${randomTileX-1}-${randomTileY+1}`);
+    grassTilesIDs.push(`${randomTileX-1}-${randomTileY-1}`);
     //adjacent tiles
-    grassTilesIDs.push(`#${randomTileX+1}-${randomTileY}`);
-    grassTilesIDs.push(`#${randomTileX-1}-${randomTileY}`);
-    grassTilesIDs.push(`#${randomTileX}-${randomTileY+1}`);
-    grassTilesIDs.push(`#${randomTileX}-${randomTileY-1}`);
+    grassTilesIDs.push(`${randomTileX+1}-${randomTileY}`);
+    grassTilesIDs.push(`${randomTileX-1}-${randomTileY}`);
+    grassTilesIDs.push(`${randomTileX}-${randomTileY+1}`);
+    grassTilesIDs.push(`${randomTileX}-${randomTileY-1}`);
     //two-away tiles
-    grassTilesIDs.push(`#${randomTileX+2}-${randomTileY}`);
-    grassTilesIDs.push(`#${randomTileX-2}-${randomTileY}`);
-    grassTilesIDs.push(`#${randomTileX}-${randomTileY+2}`);
-    grassTilesIDs.push(`#${randomTileX}-${randomTileY-2}`);
+    grassTilesIDs.push(`${randomTileX+2}-${randomTileY}`);
+    grassTilesIDs.push(`${randomTileX-2}-${randomTileY}`);
+    grassTilesIDs.push(`${randomTileX}-${randomTileY+2}`);
+    grassTilesIDs.push(`${randomTileX}-${randomTileY-2}`);
 
 
     //add all tiles to grassTile array
-    grassTilesIDs.push(`#${randomTileX}-${randomTileY}`);
+    grassTilesIDs.push(`${randomTileX}-${randomTileY}`);
 
   };
 
   //make tiles green
   for (let i = 0; i < grassTilesIDs.length; i++) {
-    $(grassTilesIDs[i]).css('background-color', 'green');
-    $(grassTilesIDs[i]).data("")
-    console.log("Grass tiles assigned.")
+    $(`#${grassTilesIDs[i]}`).css('background-color', 'green');
+
   };
+    console.log("Grass tiles assigned.")
 
 };

@@ -30,16 +30,24 @@ function setUpControls() {
   //Set up mouse hover effect
   $(".tile")
     .mouseover(function() {
-        currentTileID = $(this).attr("id");
-
+      currentTileID = $(this).attr("id");
+      //set the border color to white
       $(this).css("border-color", "white");
 
       let tileTerrain = checkTile();
 
+      if(($(this).css('background-color'))=== 'green'){
+        $(this).data("info").terrain = "Land";
+      }
+
       $("#tileinfotext")
-      .text($(this).data("info").terrain + ", " +
-      $(this).data("info").type  + ", " +
-      $(this).data("info").id);
+      .text(tileTerrain + ", " +
+      $(this).data("info").building + ", " +
+      $(this).data("info").x + "-" +
+      $(this).data("info").y)
+
+
+
     })
     .mouseout(function() {
       $(this).css("border-color", "black");
@@ -82,10 +90,10 @@ function createDialog(title, text, responseOne, responseTwo) {
 
 
 function checkTile(){
-  if(grassTilesIDs.includes(`#${currentTileID}`)){
-  return "Land tile";
+  if(grassTilesIDs.includes(`${currentTileID}`)){
+  return "Land";
 } else {
-  return "Water Tile "
+  return "Water"
 }
 
 

@@ -2,7 +2,7 @@ function buildMenu() {
 
   currentTileID = $(this).attr("id");
 
-  if ((grassTilesIDs.includes(`#${currentTileID}`)) === true) {
+  if ((grassTilesIDs.includes(`${currentTileID}`)) === true) {
 
     createDialog("Creating a new city:", "Are you sure you'd like to place a city on this tile?");
 
@@ -13,10 +13,12 @@ function buildMenu() {
   }
 };
 
-function buildCity(){
+function buildCity() {
 
-    $(`#${currentTileID}`).css("background-image", "url(assets/images/house.png)");
-    console.log(`City built on ${currentTileID}!`)
+  $(`#${currentTileID}`).css("background-image", "url(assets/images/house.png)");
+  $(`#${currentTileID}`).data("info").building = "City";
+
+  console.log(`City built on ${currentTileID}!`)
 
 
 
