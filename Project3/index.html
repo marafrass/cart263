@@ -18,24 +18,30 @@
 
   <!-- Library script(s) -->
   <!-- Add your required libraries here either as local files or CDN-hosted files -->
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.core.min.js" integrity="sha256-KNY0IDDc9kAie/G8wTJ9BeGjBRqoPgadY2FQM0JmdYc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.js" integrity="sha256-FNAKr1U+8W8E3zROGSYO2dQKFHIpoGU/TVm8aGpGWUY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.min.js" integrity="sha256-/Q4ZPy6sMbk627wHxuaWSIXS1y7D2KnMhsm/+od7ptE=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.spatial.min.js" integrity="sha256-FnoEYQo1WoCprbo3Jt08GQNf2oCfTDAvxKvUZB0YDHo=" crossorigin="anonymous"></script>
 
   <!-- My script(s) -->
   <script src="js/map.js"></script>
   <script src="js/building.js"></script>
-    <script src="js/dialog.js"></script>
+  <script src="js/dialog.js"></script>
   <script src="js/script.js"></script>
 
 </head>
 
 <body>
   <div class="canvas"></div>
-  <div class="options"></div>
 
   <div class="panel">
     <div id="tileinfopanel">
       <div id="tileinfotext"> No tile selected. </div>
+      <div id="production"> </div>
+      <div id="housing"> </div>
     </div>
+    <div id="infopanel">
+      <div id="infotext"> No tile selected. </div>
   </div>
 
 

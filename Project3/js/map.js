@@ -9,14 +9,14 @@ let grassTilesIDs = [];
 
 function createMap() {
 
-  console.log("building map");
+  console.log("Building map...");
 
   let rowNumber = 0;
   let tileNumber = 0;
 
   for (let i = 0; i < mapTileHeight; i++) {
     for (let i = 0; i < mapTileWidth; i++) {
-      let tileID = `${tileNumber}-${rowNumber}`
+      let tileID = `${rowNumber}-${tileNumber}`
       $(".canvas").append(`<div class=tile id=${tileID}> ${tileID}</div>`);
       tileNumber += 1;
       $(`#${tileID}`).data("info", {
@@ -37,8 +37,8 @@ function createMap() {
     $(`#${allTilesIDs[i]}`).css('background-color', 'blue');
   };
 
-  console.log("Tiles completed");
-  console.log("Assigning initial terrain");
+  console.log("Tiles completed!");
+  console.log("Assigning initial terrain...");
 
 };
 
@@ -75,6 +75,6 @@ function assignGrass() {
     $(`#${grassTilesIDs[i]}`).css('background-color', 'green');
 
   };
-    console.log("Grass tiles assigned.")
+    console.log("Grass tiles assigned!")
 
 };

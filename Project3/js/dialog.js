@@ -28,9 +28,9 @@ function createDialog(title, text, responseOne, responseTwo) {
 
         },
         //Response two
-        Ships: function() {
+        Factory: function() {
           $(this).dialog("close");
-          buildHouses();
+          buildFactory();
 
         }
       }

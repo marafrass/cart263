@@ -13,16 +13,15 @@ to match your project! Write JavaScript to do amazing things below!
 $(document).ready(setup);
 
 let currentTileID;
-let response;
-
-
+let clickedTile;
 
 function setup() {
 
   createMap();
   assignGrass();
   setUpControls();
-
+  updateHousing();
+  updateProduction();
 }
 
 function setUpControls() {
@@ -44,10 +43,8 @@ function setUpControls() {
       $("#tileinfotext")
       .text(tileTerrain + ", " +
       $(this).data("info").building + ", " +
-      $(this).data("info").x + "-" +
-      $(this).data("info").y)
-
-
+      $(this).data("info").y + "-" +
+      $(this).data("info").x)
 
     })
     .mouseout(function() {
@@ -71,5 +68,10 @@ function checkTile(){
   return "Water"
 }
 
+}
+
+function display(text){
+
+  $("#infotext").text(text)
 
 }
