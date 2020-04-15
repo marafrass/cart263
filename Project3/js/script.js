@@ -20,8 +20,7 @@ function setup() {
   createMap();
   assignGrass();
   setUpControls();
-  updateHousing();
-  updateProduction();
+  updatePoints();
 }
 
 function setUpControls() {
@@ -36,15 +35,18 @@ function setUpControls() {
 
       let tileTerrain = checkTile();
 
-      if(($(this).css('background-color'))=== 'green'){
-        $(this).data("info").terrain = "Land";
+      if (($(this).data("info").cityName) === "None") {
+        $("#tileinfotext")
+          .text(tileTerrain + ", " +
+            $(this).data("info").building + ", " +
+            $(this).data("info").y + "-" +
+            $(this).data("info").x)
+      } else {
+        $("#tileinfotext")
+          .text($(this).data("info").cityName + " (City) " +
+            $(this).data("info").y + "-" +
+            $(this).data("info").x)
       }
-
-      $("#tileinfotext")
-      .text(tileTerrain + ", " +
-      $(this).data("info").building + ", " +
-      $(this).data("info").y + "-" +
-      $(this).data("info").x)
 
     })
     .mouseout(function() {
@@ -52,25 +54,26 @@ function setUpControls() {
     });
 
   $(".tile")
-    .click(function(){
+    .click(function() {
 
       clickedTile = $(this).attr("id");
       buildMenu();
     });
 
+
 };
 
 
-function checkTile(){
-  if(grassTilesIDs.includes(`${currentTileID}`)){
-  return "Land";
-} else {
-  return "Water"
-}
+function checkTile() {
+  if (grassTilesIDs.includes(`${currentTileID}`)) {
+    return "Land";
+  } else {
+    return "Water"
+  }
 
 }
 
-function display(text){
+function display(text) {
 
   $("#infotext").text(text)
 

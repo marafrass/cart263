@@ -1,39 +1,56 @@
+function createDialog(title, text) {
 
-function createDialog(title, text, responseOne, responseTwo) {
 
-  //create the HTML for the dialog using the set parameters
+
+  //create the dialog using title and text from the function parameters
   return $("<div class='dialog' title='" + title + "'><p>" + text + "</p></div>")
     //Set dimensions of the dialog
     .dialog({
-      height: 400,
+      height: 250,
       width: 300,
-      //modal: true,
+
       //set buttons for the responses
       buttons: {
-        //Response one
         City: function() {
           $(this).dialog("close");
           buildCity();
         },
-        //Response two
         Houses: function() {
           $(this).dialog("close");
           buildHouses();
 
         },
-        //Response two
         Camps: function() {
           $(this).dialog("close");
           buildCamp();
 
         },
-        //Response two
         Factory: function() {
           $(this).dialog("close");
           buildFactory();
+
+        },
+        Forest: function() {
+          $(this).dialog("close");
+          buildForest();
 
         }
       }
     });
 
-}
+};
+
+
+function nameCity() {
+  return $(`<div class='dialog' title='What do you want to name the city?'><input type="text" name="name"></div>`)
+    .dialog({
+      buttons: {
+        'OK': function() {
+          let name = $('input[name="name"]').val();
+          $(`#${clickedTile}`).data("info").cityName = name;
+          console.log(`City on ${clickedTile} was named ${name}!`)
+          $(this).dialog('close');
+        }
+      }
+    });
+};
