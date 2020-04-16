@@ -33,13 +33,11 @@ function createDialog(title, text) {
         Forest: function() {
           $(this).dialog("close");
           buildForest();
-
         }
       }
     });
 
 };
-
 
 function nameCity() {
   return $(`<div class='dialog' title='What do you want to name the city?'><input type="text" name="name"></div>`)
@@ -47,8 +45,10 @@ function nameCity() {
       buttons: {
         'OK': function() {
           let name = $('input[name="name"]').val();
+          // 
           $(`#${clickedTile}`).data("info").cityName = name;
           $(`#${clickedTile}`).text(name);
+          //log this in the console.
           console.log(`City on ${clickedTile} was named ${name}!`)
           $(this).dialog('close');
         }
