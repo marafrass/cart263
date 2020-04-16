@@ -1,6 +1,4 @@
-function createDialog(title, text) {
-
-
+function landDialog(title, text) {
 
   //create the dialog using title and text from the function parameters
   return $("<div class='dialog' title='" + title + "'><p>" + text + "</p></div>")
@@ -30,9 +28,48 @@ function createDialog(title, text) {
           buildFactory();
 
         },
-        Forest: function() {
+        Farm: function() {
           $(this).dialog("close");
-          buildForest();
+          buildFarm();
+        }
+      }
+    });
+
+};
+
+function seaDialog(title, text) {
+
+  //create the dialog using title and text from the function parameters
+  return $("<div class='dialog' title='" + title + "'><p>" + text + "</p></div>")
+    //Set dimensions of the dialog
+    .dialog({
+      height: 250,
+      width: 300,
+
+      //set buttons for the responses
+      buttons: {
+        City: function() {
+          $(this).dialog("close");
+          buildCity();
+        },
+        Houses: function() {
+          $(this).dialog("close");
+          buildHouses();
+
+        },
+        Camps: function() {
+          $(this).dialog("close");
+          buildCamp();
+
+        },
+        Factory: function() {
+          $(this).dialog("close");
+          buildFactory();
+
+        },
+        Farm: function() {
+          $(this).dialog("close");
+          buildFarm();
         }
       }
     });
@@ -45,7 +82,7 @@ function nameCity() {
       buttons: {
         'OK': function() {
           let name = $('input[name="name"]').val();
-          // 
+          //
           $(`#${clickedTile}`).data("info").cityName = name;
           $(`#${clickedTile}`).text(name);
           //log this in the console.

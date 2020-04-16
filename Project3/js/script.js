@@ -18,14 +18,18 @@ let clickedTile;
 function setup() {
 
   createMap();
-  assignGrass();
+  assignWater();
+  assignLand();
+  assignFeatures("Mountains", mountainRate, "url(assets/images/mountain.png)")
+  assignFeatures("Forest", forestRate, "url(assets/images/forest.png)")
+  assignFeatures("Farmlands", farmRate, "url(assets/images/farm.png)")
+  assignSeaFeatures("Fish", fishRate, "url(assets/images/fish.png)")
   setUpControls();
   updatePoints();
 }
 
+
 function setUpControls() {
-
-
   //Set up mouse hover effect
   $(".tile")
     .mouseover(function() {
@@ -33,12 +37,12 @@ function setUpControls() {
       //set the border color to white
       $(this).css("border-color", "white");
 
-      let tileTerrain = checkTile();
+      let tileTerrain = $(this).data("info").terrain;
 
       if (($(this).data("info").cityName) === "None") {
         $("#tileinfotext")
           .text(tileTerrain + ", " +
-            $(this).data("info").building + ", " +
+            $(this).data("info").feature + ", " +
             $(this).data("info").y + "-" +
             $(this).data("info").x)
       } else {
@@ -64,14 +68,6 @@ function setUpControls() {
 };
 
 
-function checkTile() {
-  if (grassTilesIDs.includes(`${currentTileID}`)) {
-    return "Land";
-  } else {
-    return "Water"
-  }
-
-}
 
 function display(text) {
 

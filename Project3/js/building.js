@@ -11,19 +11,18 @@ let factoryCost = 5;
 //Spawn in the dialog box for selecting what the player wants to build
 function buildMenu() {
   //test if there is a building on the selected tile
-  if ($(`#${clickedTile}`).data("info").building != "No building") {
+  if ($(`#${clickedTile}`).data("info").feature === "Ocean") {
     //if there is, stop player from building
     console.error("Can't build here!")
-    display("Can't build on top of another building!");
+    display("Can't build on " + ($(`#${clickedTile}`).data("info").feature) + "!");
     //if there is no building here, check if the selected tile is a land tile
-  } else if ((grassTilesIDs.includes(`${clickedTile}`)) === true) {
+  } else if ((landTilesIDs.includes(`${clickedTile}`)) === true) {
     //if so, create dialog with relevant info and title
-    createDialog("Building Menu:", "What do you want to build on this tile?");
+    landDialog("Land Tile:", "What do you want to build on this tile?");
 
-  } else {
+  } else if ($(`#${clickedTile}`).data("info").feature === "Shallows"){
     //if the selected tile has no building an doesnt appear in land tiles array, it must be a water tile
-    console.error("Can't build here!")
-    display("Can't build on this tile!");
+    seaDialog("Sea Tile:", "What do you want to build on this tile?");
   }
 };
 
@@ -39,7 +38,7 @@ function buildCity() {
     housingPoints += cityCost;
 
     $(`#${clickedTile}`).css("background-image", "url(assets/images/house.png)");
-    $(`#${clickedTile}`).data("info").building = "City";
+    $(`#${clickedTile}`).data("info").feature = "City";
     display("City built!")
     console.log(`City built on ${clickedTile}!`)
 
@@ -58,12 +57,17 @@ function buildHouses() {
   if (housingPoints >= houseCost) {
 
     housingPoints -= houseCost;
-    productionPoints += (houseCost / 2);
 
     $(`#${clickedTile}`).css("background-image", "url(assets/images/houses.png)");
-    $(`#${clickedTile}`).data("info").building = "Houses";
-    display("Houses built!")
+    $(`#${clickedTile}`).data("info").feature = "Houses";
     console.log(`Houses built on ${clickedTile}!`)
+
+    let addedProPoints = checkSurroundingTilesFor("City")
+
+
+    let addedTotal
+
+    display(`Houses built - earned ${addedTotal} Production Points!`)
     updatePoints();
   } else {
     console.error("Insufficient funds!")
@@ -75,7 +79,7 @@ function buildHouses() {
 function buildCamp() {
 
   $(`#${clickedTile}`).css("background-image", "url(assets/images/camp.png)");
-  $(`#${clickedTile}`).data("info").building = "Camp";
+  $(`#${clickedTile}`).data("info").feature = "Camp";
 
   let addedPoints = checkSurroundingTilesFor("Forest");
   productionPoints += addedPoints;
@@ -95,7 +99,7 @@ function buildFactory() {
     productionPoints += factoryCost + 1;
     display("Factory built!")
     $(`#${clickedTile}`).css("background-image", "url(assets/images/factory.png)");
-    $(`#${clickedTile}`).data("info").building = "Factory";
+    $(`#${clickedTile}`).data("info").feature = "Factory";
 
     console.log(`Factory built on ${clickedTile}!`)
     updatePoints();
@@ -106,13 +110,34 @@ function buildFactory() {
 
 }
 
-function buildForest() {
-  productionPoints += 1;
-  display("Forest planted!")
-  $(`#${clickedTile}`).css("background-image", "url(assets/images/forest.png)");
-  $(`#${clickedTile}`).data("info").building = "Forest";
+function buildFarm() {
 
-  console.log(`Forest planted on ${clickedTile}!`)
+  let addedPoints = checkSurroundingTilesFor("Farmlands")
+  let addedTotal = 0;
+  addedTotal += addedPoints;
+
+  productionPoints += addedPoints;
+
+  display(`Farm built - earned ${addedTotal} Production Points!`)
+  $(`#${clickedTile}`).css("background-image", "url(assets/images/farmhouse.png)");
+  $(`#${clickedTile}`).data("info").feature = "Farm";
+
+  console.log(`Farm built on ${clickedTile}!`)
+  updatePoints();
+
+}
+
+function buildPark() {
+
+  $(`#${clickedTile}`).css("background-image", "url(assets/images/park.png)");
+  $(`#${clickedTile}`).data("info").feature = "Park";
+
+  let addedPoints = checkSurroundingTilesFor("Park");
+  productionPoints += addedPoints;
+
+  display(`Park built - Earned ${addedPoints} Production Points!`)
+
+  console.log(`Park built on ${clickedTile}!`)
   updatePoints();
 
 }
@@ -129,7 +154,7 @@ function updatePoints() {
 ///
 // This function checks surrounding tiles for the parameter (building) given
 // and was an absolute bitch to write but I'm proud I did.
-function checkSurroundingTilesFor(searchedBuilding) {
+function checkSurroundingTilesFor(searchedFeature) {
 
   let tileX = $(`#${clickedTile}`).data("info").x;
   let tileY = $(`#${clickedTile}`).data("info").y;
@@ -144,11 +169,13 @@ function checkSurroundingTilesFor(searchedBuilding) {
 
     for (let i = 0; i < 3; i++) {
 
-      console.log("searching on " + searchY + "-" + searchX + " for " + searchedBuilding);
-      if ($(`#${searchY}-${searchX}`).data("info").building === searchedBuilding) {
+      console.log("searching on " + searchY + "-" + searchX + " for " + searchedFeature);
+
+      if ($(`#${searchY}-${searchX}`).data("info").feature === searchedFeature) {
         result += 1;
-        console.log(searchedBuilding + " found at " + searchY + "-" + searchX);
+        console.log(searchedFeature + " found at " + searchY + "-" + searchX);
       };
+
       searchX += 1;
     }
     searchX = tileX - 1;

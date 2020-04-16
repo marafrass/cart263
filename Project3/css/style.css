@@ -4,6 +4,7 @@ body {
 }
 
 .canvas {
+  font-family: 'Girassol', cursive;
   background-color: blue;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
@@ -12,7 +13,9 @@ body {
 }
 
 .tile {
+  font-family: 'Girassol', cursive;
   font-size: 12px;
+  color: #3b331c;
   width: 80px;
   height:80px;
   border: solid;
@@ -26,6 +29,7 @@ body {
 }
 
 .options {
+  font-family: 'Girassol', cursive;
   background-color: white;
   position: fixed;
   height: 50%;
@@ -37,44 +41,53 @@ body {
 }
 
 .panel {
+  font-family: 'Girassol', cursive;
   border: solid;
-  border-color: black;
+  border-color: #736335;
   border-radius: 14px;
-  background-color: white;
+  background-color: #dec371;
   position: fixed;
   height: 25%;
   width: 40%;
   top: 80%;
   left: 78%;
-  padding: 20px;
+  padding: 12px;
   transform: translate(-50%, 0);
 }
 
 #tileinfopanel {
+  font-family: 'Girassol', cursive;
     border-radius: 8px;
-  background-color: grey;
+  background-color: #eddcab;
   width: 45%;
   height: 60%;
   float: left;
+  border: solid;
+  border-radius: 8px;
 
 }
 
 #tileinfotext {
+  font-family: 'Girassol', cursive;
     border-radius: 8px;
   padding: 8px;
 }
 
 #infopanel {
+  font-family: 'Girassol', cursive;
   border-radius: 8px;
-  background-color: grey;
+  background-color: #eddcab;
   width: 50%;
   height: 60%;
   float: right;
   font-size: 30px;
+  border: solid;
+  border-radius: 8px;
 
 }
 
 #infotext {
+
   padding: 8px;
 }
 
