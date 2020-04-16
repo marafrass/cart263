@@ -48,6 +48,7 @@ function nameCity() {
         'OK': function() {
           let name = $('input[name="name"]').val();
           $(`#${clickedTile}`).data("info").cityName = name;
+          $(`#${clickedTile}`).text(name);
           console.log(`City on ${clickedTile} was named ${name}!`)
           $(this).dialog('close');
         }

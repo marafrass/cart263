@@ -40,9 +40,12 @@ function buildCity() {
 
     $(`#${clickedTile}`).css("background-image", "url(assets/images/house.png)");
     $(`#${clickedTile}`).data("info").building = "City";
-
+    display("City built!")
     console.log(`City built on ${clickedTile}!`)
+
     updatePoints();
+    checkSurroundingTilesFor("Houses");
+
   } else {
     console.error("Insufficient funds!")
     display("Not enough production points!")
@@ -59,7 +62,7 @@ function buildHouses() {
 
     $(`#${clickedTile}`).css("background-image", "url(assets/images/houses.png)");
     $(`#${clickedTile}`).data("info").building = "Houses";
-
+    display("Houses built!")
     console.log(`Houses built on ${clickedTile}!`)
     updatePoints();
   } else {
@@ -74,6 +77,11 @@ function buildCamp() {
   $(`#${clickedTile}`).css("background-image", "url(assets/images/camp.png)");
   $(`#${clickedTile}`).data("info").building = "Camp";
 
+  let addedPoints = checkSurroundingTilesFor("Forest");
+  productionPoints += addedPoints;
+
+  display(`Camp built - Earned ${addedPoints} Production Points!`)
+
   console.log(`Camp built on ${clickedTile}!`)
   updatePoints();
 
@@ -85,7 +93,7 @@ function buildFactory() {
 
     housingPoints -= factoryCost;
     productionPoints += factoryCost + 1;
-
+    display("Factory built!")
     $(`#${clickedTile}`).css("background-image", "url(assets/images/factory.png)");
     $(`#${clickedTile}`).data("info").building = "Factory";
 
@@ -99,9 +107,8 @@ function buildFactory() {
 }
 
 function buildForest() {
-
   productionPoints += 1;
-
+  display("Forest planted!")
   $(`#${clickedTile}`).css("background-image", "url(assets/images/forest.png)");
   $(`#${clickedTile}`).data("info").building = "Forest";
 
@@ -110,11 +117,45 @@ function buildForest() {
 
 }
 
-
 //updatePoints()
 //
 //Updates the points displayed in the UI
 function updatePoints() {
   $("#housing").text(`Housing Points: ${housingPoints}`);
   $("#production").text(`Production Points: ${productionPoints}`);
+}
+
+//checkSurroundingTilesFor()
+///
+// This function checks surrounding tiles for the parameter (building) given
+// and was an absolute bitch to write but I'm proud I did.
+function checkSurroundingTilesFor(searchedBuilding) {
+
+  let tileX = $(`#${clickedTile}`).data("info").x;
+  let tileY = $(`#${clickedTile}`).data("info").y;
+  console.log(tileX + " - " + tileY);
+
+  let result = 0;
+
+  let searchY = tileY - 1;
+  let searchX = tileX - 1;
+
+  for (let y = 0; y < 3; y++) {
+
+    for (let i = 0; i < 3; i++) {
+
+      console.log("searching on " + searchY + "-" + searchX + " for " + searchedBuilding);
+      if ($(`#${searchY}-${searchX}`).data("info").building === searchedBuilding) {
+        result += 1;
+        console.log(searchedBuilding + " found at " + searchY + "-" + searchX);
+      };
+      searchX += 1;
+    }
+    searchX = tileX - 1;
+    searchY += 1;
+
+  }
+
+  console.log("result of search showed " + result);
+  return result;
 }

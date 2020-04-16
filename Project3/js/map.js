@@ -1,6 +1,6 @@
-let mapTileWidth = 18;
-let mapTileHeight = 18;
-let initGrassTile = 20;
+let mapTileWidth = 23;
+let mapTileHeight = 23;
+let initGrassTile = 25;
 
 let allTilesIDs = [];
 
