@@ -1,6 +1,6 @@
 body {
   background-color: black;
-  padding: 10px;
+  padding: 0px;
 }
 
 .canvas {
@@ -9,7 +9,9 @@ body {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
   background-color: black;
-  padding: 10px;
+  padding: 0px;
+  padding-right: 50px;
+  padding-bottom: 120px;
 }
 
 .tile {
@@ -48,10 +50,11 @@ body {
   background-color: #dec371;
   position: fixed;
   height: 25%;
-  width: 40%;
+  width: 95%;
   top: 80%;
-  left: 78%;
+  left: 50%;
   padding: 12px;
+  float: left;
   transform: translate(-50%, 0);
 }
 
@@ -59,7 +62,7 @@ body {
   font-family: 'Girassol', cursive;
     border-radius: 8px;
   background-color: #eddcab;
-  width: 45%;
+  width: 20%;
   height: 60%;
   float: left;
   border: solid;
@@ -77,7 +80,7 @@ body {
   font-family: 'Girassol', cursive;
   border-radius: 8px;
   background-color: #eddcab;
-  width: 50%;
+  width: 70%;
   height: 60%;
   float: right;
   font-size: 30px;

@@ -1,7 +1,7 @@
 function landDialog(title, text) {
 
   //create the dialog using title and text from the function parameters
-  return $("<div class='dialog' title='" + title + "'><p>" + text + "</p></div>")
+  return $("<div class='dialog' title='" + title + " "+ clickedTile + "'><p>" + text + "</p></div>")
     //Set dimensions of the dialog
     .dialog({
       height: 250,
@@ -31,16 +31,21 @@ function landDialog(title, text) {
         Farm: function() {
           $(this).dialog("close");
           buildFarm();
+        },
+        Park: function() {
+          $(this).dialog("close");
+          buildPark();
         }
       }
     });
+
 
 };
 
 function seaDialog(title, text) {
 
   //create the dialog using title and text from the function parameters
-  return $("<div class='dialog' title='" + title + "'><p>" + text + "</p></div>")
+    return $("<div class='dialog' title='" + title + " "+ clickedTile + "'><p>" + text + "</p></div>")
     //Set dimensions of the dialog
     .dialog({
       height: 250,
@@ -48,28 +53,24 @@ function seaDialog(title, text) {
 
       //set buttons for the responses
       buttons: {
-        City: function() {
+        Fishery: function() {
           $(this).dialog("close");
-          buildCity();
+          buildFishery();
         },
-        Houses: function() {
+        Harbor: function() {
           $(this).dialog("close");
-          buildHouses();
+          buildHarbor();
 
         },
-        Camps: function() {
+        Lighthouse: function() {
           $(this).dialog("close");
-          buildCamp();
+          buildLighthouse();
 
         },
-        Factory: function() {
+        Refinery: function() {
           $(this).dialog("close");
-          buildFactory();
+          buildRefinery();
 
-        },
-        Farm: function() {
-          $(this).dialog("close");
-          buildFarm();
         }
       }
     });
@@ -87,6 +88,7 @@ function nameCity() {
           $(`#${clickedTile}`).text(name);
           //log this in the console.
           console.log(`City on ${clickedTile} was named ${name}!`)
+          $(this).remove();
           $(this).dialog('close');
         }
       }

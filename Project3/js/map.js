@@ -6,6 +6,7 @@ let mountainRate = 5;
 let farmRate = 10;
 let fishRate = 3;
 let oceanRate = 20;
+let oilRate = 1;
 
 let allTilesIDs = [];
 
@@ -107,6 +108,7 @@ function assignLand() {
   for (let i = 0; i < allTilesIDs.length; i++) {
   if ((landTilesIDs.includes(`${allTilesIDs[i]}`)) === true) {
     $(`#${allTilesIDs[i]}`).data('info').terrain = "Land";
+    $(`#${allTilesIDs[i]}`).data('info').feature = "Grasslands";
   }
 }
 

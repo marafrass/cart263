@@ -24,6 +24,7 @@ function setup() {
   assignFeatures("Forest", forestRate, "url(assets/images/forest.png)")
   assignFeatures("Farmlands", farmRate, "url(assets/images/farm.png)")
   assignSeaFeatures("Fish", fishRate, "url(assets/images/fish.png)")
+  assignSeaFeatures("Oil", oilRate, "url(assets/images/oil.png)")
   setUpControls();
   updatePoints();
 }
@@ -59,7 +60,6 @@ function setUpControls() {
 
   $(".tile")
     .click(function() {
-
       clickedTile = $(this).attr("id");
       buildMenu();
     });

@@ -18,10 +18,12 @@ function buildMenu() {
     //if there is no building here, check if the selected tile is a land tile
   } else if ((landTilesIDs.includes(`${clickedTile}`)) === true) {
     //if so, create dialog with relevant info and title
+    display("Select your build!")
     landDialog("Land Tile:", "What do you want to build on this tile?");
 
-  } else if ($(`#${clickedTile}`).data("info").feature === "Shallows"){
+  } else if ($(`#${clickedTile}`).data("info").feature === "Shallows") {
     //if the selected tile has no building an doesnt appear in land tiles array, it must be a water tile
+    display("Select your build!")
     seaDialog("Sea Tile:", "What do you want to build on this tile?");
   }
 };
@@ -132,7 +134,7 @@ function buildPark() {
   $(`#${clickedTile}`).css("background-image", "url(assets/images/park.png)");
   $(`#${clickedTile}`).data("info").feature = "Park";
 
-  let addedPoints = checkSurroundingTilesFor("Park");
+  let addedPoints = checkSurroundingTilesFor("Houses");
   productionPoints += addedPoints;
 
   display(`Park built - Earned ${addedPoints} Production Points!`)
@@ -141,6 +143,83 @@ function buildPark() {
   updatePoints();
 
 }
+
+function buildFishery() {
+
+  if (checkSurroundingTilesFor("Fishery") < 1) {
+
+    $(`#${clickedTile}`).css("background-image", "url(assets/images/fishery.png)");
+    $(`#${clickedTile}`).data("info").feature = "Fishery";
+
+    let addedPoints = (checkSurroundingTilesFor("Fish")) * 2;
+    productionPoints += addedPoints;
+
+    display(`Fishery built - Earned ${addedPoints} Production Points!`)
+
+    updatePoints();
+
+  } else {
+    display("Can't build a Fishery so close to another!")
+  }
+}
+
+function buildRefinery() {
+
+    if (checkSurroundingTilesFor("Refinery") < 1) {
+
+  $(`#${clickedTile}`).css("background-image", "url(assets/images/refinery.png)");
+  $(`#${clickedTile}`).data("info").feature = "Refinery";
+  let addedPoints = (checkSurroundingTilesFor("Oil")) * 4;
+  productionPoints += addedPoints;
+
+  display(`Refinery built - Earned ${addedPoints} Production Points! Great job pushing fossil fuels, asshole!`)
+
+  updatePoints();
+} else{
+
+      display("Can't build a Refinery so close to another!")
+}
+
+}
+
+function buildHarbor() {
+
+  if (checkSurroundingTilesFor("City") >= 1) {
+    $(`#${clickedTile}`).css("background-image", "url(assets/images/harbor.png)");
+    $(`#${clickedTile}`).data("info").feature = "Harbor";
+
+    let addedPoints = checkSurroundingTilesFor("Shallows") * 1;
+    productionPoints += addedPoints;
+    display(`Harbor built - Earned ${addedPoints} Production Points!`)
+    updatePoints();
+
+  } else {
+    display("Can't place a harbor here - needs an adjacent City!")
+  }
+
+
+}
+
+function buildLighthouse() {
+
+  if (checkSurroundingTilesFor("Grasslands") >= 2) {
+    $(`#${clickedTile}`).css("background-image", "url(assets/images/lighthouse.png)");
+    $(`#${clickedTile}`).data("info").feature = "Lighthouse";
+
+    let addedPoints = checkSurroundingTilesFor("Ocean") * 1.5;
+    productionPoints += addedPoints;
+
+    display(`Lighthouse built - Earned ${addedPoints} Production Points!`)
+
+    updatePoints();
+  } else {
+    display("Can't place a lighthouse here - needs at least two tiles of grasslands!")
+  }
+
+}
+
+
+
 
 //updatePoints()
 //
@@ -161,28 +240,19 @@ function checkSurroundingTilesFor(searchedFeature) {
   console.log(tileX + " - " + tileY);
 
   let result = 0;
-
   let searchY = tileY - 1;
   let searchX = tileX - 1;
-
   for (let y = 0; y < 3; y++) {
 
     for (let i = 0; i < 3; i++) {
 
-      console.log("searching on " + searchY + "-" + searchX + " for " + searchedFeature);
-
       if ($(`#${searchY}-${searchX}`).data("info").feature === searchedFeature) {
         result += 1;
-        console.log(searchedFeature + " found at " + searchY + "-" + searchX);
       };
-
       searchX += 1;
     }
     searchX = tileX - 1;
     searchY += 1;
-
   }
-
-  console.log("result of search showed " + result);
   return result;
 }
