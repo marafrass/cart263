@@ -4,8 +4,9 @@ function landDialog(title, text) {
   return $("<div class='dialog' title='" + title + " "+ clickedTile + "'><p>" + text + "</p></div>")
     //Set dimensions of the dialog
     .dialog({
-      height: 250,
-      width: 300,
+      modal: true,
+      height: 200,
+      width: 600,
 
       //set buttons for the responses
       buttons: {
@@ -35,6 +36,10 @@ function landDialog(title, text) {
         Park: function() {
           $(this).dialog("close");
           buildPark();
+        },
+        Mine: function() {
+          $(this).dialog("close");
+          buildMine();
         }
       }
     });
@@ -48,6 +53,7 @@ function seaDialog(title, text) {
     return $("<div class='dialog' title='" + title + " "+ clickedTile + "'><p>" + text + "</p></div>")
     //Set dimensions of the dialog
     .dialog({
+      modal: true,
       height: 250,
       width: 300,
 
@@ -78,16 +84,22 @@ function seaDialog(title, text) {
 };
 
 function nameCity() {
-  return $(`<div class='dialog' title='What do you want to name the city?'><input type="text" name="name"></div>`)
+  return $(`<div class='dialog' title='What should we name the city?'><input type="text" name="name" maxlength="12" size="25"></div>`)
     .dialog({
+      height: 200,
+      width: 300,
+      modal: true,
+      dialogClass: "noclose",
       buttons: {
         'OK': function() {
           let name = $('input[name="name"]').val();
           //
           $(`#${clickedTile}`).data("info").cityName = name;
           $(`#${clickedTile}`).text(name);
-          //log this in the console.
-          console.log(`City on ${clickedTile} was named ${name}!`)
+          $(`#${clickedTile}`).css("font-size", "13px");
+          $(`#${clickedTile}`).css("text-align", "center");
+
+
           $(this).remove();
           $(this).dialog('close');
         }

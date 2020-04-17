@@ -1,12 +1,12 @@
-let mapTileWidth = 23;
-let mapTileHeight = 23;
-let initGrassTile = 25;
+let mapTileWidth = 51;
+let mapTileHeight = 51;
+let initGrassTile = 100;
 let forestRate = 25;
-let mountainRate = 5;
+let mountainRate = 10;
 let farmRate = 10;
 let fishRate = 3;
 let oceanRate = 20;
-let oilRate = 1;
+let oilRate = 0.05;
 
 let allTilesIDs = [];
 
@@ -36,6 +36,7 @@ function createMap() {
       $(`#${tileID}`).data("info", {
         terrain: "Water",
         feature: "Nothing",
+        cityRange: false,
         cityName: "None",
         x: columnNumber,
         y: rowNumber
@@ -53,17 +54,24 @@ function createMap() {
 
 };
 
-function assignWater(){
+function assignWater() {
 
   //set all tiles initial color to blue (water tiles)
   for (let i = 0; i < allTilesIDs.length; i++) {
     $(`#${allTilesIDs[i]}`).css('background-color', waterColor);
-          $(`#${allTilesIDs[i]}`).data('info').feature = "Shallows";
+    $(`#${allTilesIDs[i]}`).data('info').feature = "Shallows";
+    //Set shallows tiles to animate
+  //  $(`#${allTilesIDs[i]}`).css('animation-name', "shallows");
+  //  $(`#${allTilesIDs[i]}`).css('animation-duration', "4s");
+  //  $(`#${allTilesIDs[i]}`).css('animation-iteration-count', "infinite");
 
+    //calculate amount of ocean based on oceanrate
     let chanceOfOcean = (Math.floor(Math.random() * 100));
-    if(chanceOfOcean <= oceanRate){
+    if (chanceOfOcean <= oceanRate) {
+      //set ocean tiles color 
       $(`#${allTilesIDs[i]}`).css('background-color', oceanColor);
       $(`#${allTilesIDs[i]}`).data('info').feature = "Ocean";
+    //  $(`#${allTilesIDs[i]}`).css('animation-name', "oceans");
 
     }
 
@@ -106,11 +114,15 @@ function assignLand() {
     $(`#${landTilesIDs[i]}`).css('background-color', landColor);
   };
   for (let i = 0; i < allTilesIDs.length; i++) {
-  if ((landTilesIDs.includes(`${allTilesIDs[i]}`)) === true) {
-    $(`#${allTilesIDs[i]}`).data('info').terrain = "Land";
-    $(`#${allTilesIDs[i]}`).data('info').feature = "Grasslands";
+    if ((landTilesIDs.includes(`${allTilesIDs[i]}`)) === true) {
+      $(`#${allTilesIDs[i]}`).data('info').terrain = "Land";
+      $(`#${allTilesIDs[i]}`).data('info').feature = "Grasslands";
+      //set land tiles to not animate
+      $(`#${allTilesIDs[i]}`).css('animation-name', "land");
+      $(`#${allTilesIDs[i]}`).css('animation-duration', "0");
+      $(`#${allTilesIDs[i]}`).css('animation-itaration-count', "0");
+    }
   }
-}
 
 
   console.log("Land tiles assigned!")

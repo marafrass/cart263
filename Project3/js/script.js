@@ -14,6 +14,7 @@ $(document).ready(setup);
 
 let currentTileID;
 let clickedTile;
+let firstCityPlaced = false;
 
 function setup() {
 
@@ -25,8 +26,10 @@ function setup() {
   assignFeatures("Farmlands", farmRate, "url(assets/images/farm.png)")
   assignSeaFeatures("Fish", fishRate, "url(assets/images/fish.png)")
   assignSeaFeatures("Oil", oilRate, "url(assets/images/oil.png)")
-  setUpControls();
+
   updatePoints();
+
+  introPopup();
 }
 
 
@@ -36,7 +39,7 @@ function setUpControls() {
     .mouseover(function() {
       currentTileID = $(this).attr("id");
       //set the border color to white
-      $(this).css("border-color", "white");
+      $(this).css("border-radius", "20px");
 
       let tileTerrain = $(this).data("info").terrain;
 
@@ -45,7 +48,8 @@ function setUpControls() {
           .text(tileTerrain + ", " +
             $(this).data("info").feature + ", " +
             $(this).data("info").y + "-" +
-            $(this).data("info").x)
+            $(this).data("info").x 
+          )
       } else {
         $("#tileinfotext")
           .text($(this).data("info").cityName + " (City) " +
@@ -55,13 +59,22 @@ function setUpControls() {
 
     })
     .mouseout(function() {
-      $(this).css("border-color", "black");
+      $(this).css("border-radius", "4px");
     });
 
   $(".tile")
     .click(function() {
-      clickedTile = $(this).attr("id");
-      buildMenu();
+        //for consecutive clicks, it's business as usual and we open the build menu
+      if (firstCityPlaced === true) {
+        clickedTile = $(this).attr("id");
+        buildMenu();
+
+        //for the very first click, we place out first city!
+      } else {
+        clickedTile = $(this).attr("id");
+        buildCity();
+        firstCityPlaced = true;
+      }
     });
 
 
@@ -72,5 +85,34 @@ function setUpControls() {
 function display(text) {
 
   $("#infotext").text(text)
+
+}
+
+function introPopup() {
+
+  return $("<div class='fixed-dialog' title='Hello!'><p>Welcome to divworld!</p></div>").dialog({
+    height: 650,
+    width: 400,
+    position: [],
+    modal: true,
+    dialogClass: "noclose",
+
+    //set buttons for the responses
+    buttons: {
+      Start: function() {
+        setUpControls();
+        $(this).dialog("close");
+      },
+      Regenerate: function() {
+        $(this).dialog("close");
+        location.reload();
+
+
+      }
+
+    }
+
+  })
+
 
 }

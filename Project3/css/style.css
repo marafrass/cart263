@@ -7,8 +7,8 @@ body {
   font-family: 'Girassol', cursive;
   background-color: blue;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-  background-color: black;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+  background-color: white;
   padding: 0px;
   padding-right: 50px;
   padding-bottom: 120px;
@@ -17,29 +17,36 @@ body {
 .tile {
   font-family: 'Girassol', cursive;
   font-size: 12px;
+
   color: #3b331c;
-  width: 80px;
-  height:80px;
+  width: 70px;
+  height:70px;
   border: solid;
   border-width: thin;
   padding-bottom: 4px;
   border-radius: 4px;
-  border-color: black;
+  border-color: white;
   background-image: none;
   background-size: 100%;
   background-color: white;
+
+}
+@keyframes border {
+  0%   {border-color: #de9400;}
+  33%  {border-color: yellow;}
+  66%  {border-color: black;}
+  100% {border-color: #de9400;}
 }
 
-.options {
-  font-family: 'Girassol', cursive;
-  background-color: white;
-  position: fixed;
-  height: 50%;
-  width: 10%;
-  top: 50%;
-  left: 0%;
-  padding: 20px;
-  transform: translate(-50%, 0);
+@keyframes shallows {
+  0%   {background-color: #6a97de;}
+  50%  {background-color: #5e92e0;}
+  100% {background-color: #6a97de;}
+}
+@keyframes oceans {
+  0%   {background-color: #5e89cc;}
+  50%  {background-color: #5179b8;}
+  100% {background-color: #5e89cc;}
 }
 
 .panel {
@@ -76,11 +83,24 @@ body {
   padding: 8px;
 }
 
+#characterpanel {
+width: 10%;
+height: 60%;
+background-color: black;
+  float: left;
+  border: solid;
+  border-radius: 8px;
+  border-color: white;
+  padding-left: 10px;
+  margin-left: 1.5%
+
+}
+
 #infopanel {
   font-family: 'Girassol', cursive;
   border-radius: 8px;
   background-color: #eddcab;
-  width: 70%;
+  width: 65%;
   height: 60%;
   float: right;
   font-size: 30px;
@@ -101,4 +121,21 @@ body {
 #housing {
   padding-top: 8px;
     padding-left: 8px;
+}
+
+.dialog{
+  position: fixed;
+}
+
+.fixed-dialog{
+  position: fixed;
+
+}
+div.ui-dialog {
+  position:fixed;
+}
+
+.noclose .ui-dialog-titlebar-close
+{
+    display:none;
 }
