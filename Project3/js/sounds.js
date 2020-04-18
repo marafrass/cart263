@@ -1,7 +1,7 @@
 
 //sounds.js
 //
-//This document loads all the sound files used in the game using Howler.js
+//This document loads all the sound/music files used in the game using Howler.js
 
   let sfxSelect = new Howl({
     src: ['assets/sounds/Select.wav']
@@ -81,6 +81,9 @@
   });
 
 
+//playMusic()
+//
+//This function basically loops the music for the game 
   function playMusic(){
     console.log("Started playing music")
     music1.loop();

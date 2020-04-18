@@ -1,34 +1,57 @@
+/////////////////////////////////////////////////////////////////////
+// BUILDING FUNCTIONS
+//
+// These functions dictate what happens whenever a particular building
+// is built!
+// Additionally has the code for checking adjacent tiles and other
+// general functions related to building
+//
+/////////////////////////////////////////////////////////////////////
+
 
 //buildMenu()
 //
 //Spawn in the dialog box for selecting what the player wants to build
 function buildMenu() {
-  //test if there is a building on the selected tile
+
+  //Lots of checks to see what is on the clicked tile!
+
+  //test if there is a building on the selected tile and stops player if true
   if (buildings.includes($(`#${clickedTile}`).data("info").feature) === true) {
     displayError("This tile already has a building!")
+
   } else if ($(`#${clickedTile}`).data("info").cityRange === false) {
-    //if there is, stop player from building
-    console.error("Can't build here!")
+    //if the tile is out of range for a city, stop player from building
     displayError("You're too far away from any city!");
-    //if there is no building here, check if the selected tile is a land tile
+
+    //if there is no building here, check if the selected tile is a ocean tile
   } else if ($(`#${clickedTile}`).data("info").feature === "Ocean") {
-    //if there is, stop player from building
-    console.error("Can't build here!")
+    //if it is, stop player from building
     displayError("Can't build on " + ($(`#${clickedTile}`).data("info").feature) + "!");
-    //if there is no building here, check if the selected tile is a land tile
+
+    //Check if the selected tile is a land tile
   } else if ((landTilesIDs.includes(`${clickedTile}`)) === true) {
-    //if so, create dialog with relevant info and title
+    //if so, create land dialog with relevant info and title
     display("Select your build!")
     sfxPopup2.play();
     landDialog("Land Tile:", "What do you want to build on this tile?");
 
+    //if the selected tile has no building nor ocean tile, and doesnt appear in land tiles array,
+    // check if it is a Shallows tile
   } else if ($(`#${clickedTile}`).data("info").feature === "Shallows") {
-    //if the selected tile has no building an doesnt appear in land tiles array, it must be a water tile
     sfxPopup2.play();
     display("Select your build!")
     seaDialog("Sea Tile:", "What do you want to build on this tile?");
   }
 };
+
+/////////////////////////////////////////////////////////////////////
+//
+// All functions are written like buildCity()
+// refer to this for comments!
+//
+/////////////////////////////////////////////////////////////////////
+
 
 //buildCity()
 //
@@ -40,27 +63,37 @@ function buildCity() {
 
     productionPoints -= cityCost;
     housingPoints -= (cityCost - 5);
-
+    //set the tile to contain the appropriate information
     $(`#${clickedTile}`).css("background-image", "url(assets/images/house.png)");
     $(`#${clickedTile}`).data("info").feature = "City";
     display("City built!")
+    //give points for building the city
     productionPoints += 3;
     housingPoints += 3;
+    //update points
     updatePoints();
     checkSurroundingTilesFor("Houses");
-
+    //Set the tiles in range of the city to be buildable, based on the radius variable
     setInRange();
+    //name the city
     nameCity();
+    //increase the cost of future cities
     cityCost += 2;
 
+
   } else {
+    //If not enough points, show error
     displayError(`Not enough points! Need ${cityCost} PP and ${cityCost-5} HP!`)
   }
 
 }
 
+/////////////////////////////////////////////////////////////////////
+//buildHouses()
+//
+//Function for building house
 function buildHouses() {
-
+  //check if enough points
   if (productionPoints >= houseCost) {
 
     productionPoints -= houseCost;
@@ -81,6 +114,9 @@ function buildHouses() {
 
 }
 
+/////////////////////////////////////////////////////////////////////
+//buildCamp()
+//
 function buildCamp() {
 
   if (housingPoints >= campCost) {
@@ -108,6 +144,9 @@ function buildCamp() {
 
 }
 
+/////////////////////////////////////////////////////////////////////
+//buildFactory()
+//
 function buildFactory() {
 
   if (housingPoints >= factoryCost) {
@@ -124,9 +163,11 @@ function buildFactory() {
   } else {
     displayError(`Not enough housing points! Need ${factoryCost}!`)
   }
-
 }
 
+/////////////////////////////////////////////////////////////////////
+//buildFarm()
+//
 function buildFarm() {
 
   if (housingPoints >= farmCost) {
@@ -150,9 +191,11 @@ function buildFarm() {
   } else {
     displayError(`Not enough housing points! Need ${farmCost}!`)
   }
-
 }
 
+/////////////////////////////////////////////////////////////////////
+//buildPark()
+//
 function buildPark() {
 
   if (productionPoints >= parkCost) {
@@ -164,9 +207,7 @@ function buildPark() {
 
       productionPoints -= parkCost;
       sfxPark.play();
-
       display(`Park built! How nice!`)
-
       updatePoints();
     } else {
       displayError("Can't build a Park so close to another!")
@@ -174,9 +215,11 @@ function buildPark() {
   } else {
     displayError(`Not enough housing points! Need ${farmCost}!`)
   }
-
 }
 
+/////////////////////////////////////////////////////////////////////
+//buildMine()
+//
 function buildMine() {
 
   if (housingPoints >= mineCost) {
@@ -208,7 +251,9 @@ function buildMine() {
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 
-
+/////////////////////////////////////////////////////////////////////
+//buildFishery()
+//
 function buildFishery() {
 
   if (checkSurroundingTilesFor("Fishery") < 1) {
@@ -235,7 +280,9 @@ function buildFishery() {
   }
 }
 
-
+/////////////////////////////////////////////////////////////////////
+//buildOilRig()
+//
 function buildOilRig() {
 
   if (housingPoints >= oilrigCost) {
@@ -262,6 +309,9 @@ function buildOilRig() {
 
 }
 
+/////////////////////////////////////////////////////////////////////
+//buildHarbor()
+//
 function buildHarbor() {
 
   if (housingPoints >= harborCost) {
@@ -289,6 +339,9 @@ function buildHarbor() {
 
 }
 
+/////////////////////////////////////////////////////////////////////
+//buildLighthouse()
+//
 function buildLighthouse() {
 
   if (housingPoints >= lighthouseCost) {
@@ -331,9 +384,10 @@ function updatePoints() {
   $("#production").text(`Production Points: ${productionPoints}`);
 }
 
+
 //checkSurroundingTilesFor()
 ///
-// This function checks surrounding tiles for the parameter (building) given
+// This function checks surrounding tiles for the parameter (feature) given
 // and was an absolute bitch to write but I'm proud I did.
 function checkSurroundingTilesFor(searchedFeature) {
   //Set temporary variables for the x and y
@@ -343,18 +397,23 @@ function checkSurroundingTilesFor(searchedFeature) {
   let result = 0;
   let searchY = tileY - 1;
   let searchX = tileX - 1;
+  //cycle through tiles vertically *3
   for (let y = 0; y < 3; y++) {
-
+    //cycle through tiles horisontally  *3
     for (let i = 0; i < 3; i++) {
-      //Add one to the result value if the parameter feature was found in this tile
-      if ($(`#${searchY}-${searchX}`).data("info").feature === searchedFeature) {
-        result += 1;
-      };
-      searchX += 1;
+      //ignore the tile if it is off the map
+      if ((allTilesIDs.includes(`${searchY}-${searchX}`)) === false) {} else {
+        //Add one to the result value if the parameter feature was found in this tile
+        if ($(`#${searchY}-${searchX}`).data("info").feature === searchedFeature) {
+          result += 1;
+        };
+        searchX += 1;
+      }
     }
     searchX = tileX - 1;
     searchY += 1;
   }
+  //return the found amount
   return result;
 }
 
@@ -384,9 +443,8 @@ function setInRange() {
       let width = 1;
       for (let i = 0; i < radius; i++) {
         for (let w = 0; w < width; w++) {
-          if ((allTilesIDs.includes(`${searchY}-${searchX}`)) === false) {
-            console.log("Undefined tile ignored.")
-          } else {
+          //ignore the tile if it is off the map
+          if ((allTilesIDs.includes(`${searchY}-${searchX}`)) === false) {} else {
             //Set the relevant tiles to be "in range" of the city!
             $(`#${searchY}-${searchX}`).css("border-color", "red");
             $(`#${searchY}-${searchX}`).css("color", "white");
@@ -397,15 +455,17 @@ function setInRange() {
           }
           searchX += 1;
         }
+        //update variables for next loop
         width += 2;
         searchY += 1;
         startingX -= 1;
         searchX = startingX;
       }
-      //mark that the mid point has been reached 
+      //mark that the mid point has been reached
       if (searchY === tileY) {
         hitPeak = true; //yeah boiiiii
       }
+
       //when the mid-point has been passed, we instead run the follow for loop,
       //which counts down instead of up
     } else {

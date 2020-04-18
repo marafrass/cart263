@@ -3,7 +3,12 @@
 //              This file contains all dialogs of the game                    //
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
+//All dialogs use the same general layout but vary greatly in buttons and use //
+////////////////////////////////////////////////////////////////////////////////
 
+//landDialog()
+//
+//This dialog is shown whenever a building is attempted on a land tile
 
 function landDialog(title, text) {
 
@@ -15,7 +20,7 @@ function landDialog(title, text) {
       height: 200,
       width: 600,
 
-      //set buttons for the responses
+      //set build buttons and link their respective build functions
       buttons: {
         City: function() {
           $(this).dialog("close");
@@ -49,13 +54,17 @@ function landDialog(title, text) {
           buildMine();
         }
       },
+      //set this sound to play whenever the dialog is closed
       close: function() {
-                    sfxCheck.play();
-              }
+        sfxCheck.play();
+      }
     });
 
 
 };
+//seaDialog()
+//
+// This dialog shows whenever a building is attempted on a sea tile
 
 function seaDialog(title, text) {
 
@@ -67,7 +76,7 @@ function seaDialog(title, text) {
       height: 250,
       width: 300,
 
-      //set buttons for the responses
+      //set build buttons and link their respective build functions
       buttons: {
         Fishery: function() {
           $(this).dialog("close");
@@ -90,22 +99,29 @@ function seaDialog(title, text) {
         }
       },
       close: function() {
-                    sfxCheck.play();
-              }
+        sfxCheck.play();
+      }
     });
 
 };
 
+//nameCity()
+//
+//Does exactly what it says - opens a dialog that names the city
 function nameCity() {
+  //play cool naming sound
   sfxChimes.play();
   return $(`<div class='dialog' title='Name the city!'><input type="text" name="name" maxlength="12" size="25"></div>`)
     .dialog({
+      //set dimensions and properties of dialog
       height: 200,
       width: 300,
       modal: true,
       dialogClass: "noclose",
+      //setup buttons
       buttons: {
         'OK': function() {
+          //This function sets the name to whatever the player has input
           sfxBell.play();
           let name = $('input[name="name"]').val();
           //If no name is given, find a random one from the cities array
@@ -123,6 +139,8 @@ function nameCity() {
           $(this).dialog('close');
 
         },
+        //this button automatically picks a name from an array of city names
+        //and names the city
         'Randomize': function() {
           sfxBell.play();
           let r = (Math.floor(Math.random() * cities.length));
@@ -135,7 +153,6 @@ function nameCity() {
           $(this).dialog('close');
           $(this).remove();
 
-
         }
       }
 
@@ -144,10 +161,15 @@ function nameCity() {
 };
 
 
-
+//introPopup()
+//
+//Dialog shown on the startup of the game
+//gives the player information about the game
+//and the options to change character or regenerate the map
 function introPopup() {
 
   return $("<div class='fixed-dialog' title='Hello!'><p>Welcome to divworld!</p></div>").dialog({
+    //set properties, position and size of the dialog
     height: 650,
     width: 400,
     position: [],
@@ -156,7 +178,7 @@ function introPopup() {
 
     //set buttons for the responses
     buttons: {
-
+      //the first four set the player character to be one of four animals
       Dog: function() {
         display("You're now a dog mayor!")
         sfxCheck.play();
@@ -181,16 +203,18 @@ function introPopup() {
         $("#characterpanel").css("background-image", "url(assets/images/platypus.png)");
 
       },
+      //This function sets up the controls for the game and lets the player start
       "Start Game": function() {
         display("Select a tile to place your first City on!")
         setUpControls();
         sfxDrumRoll.play();
         $(this).dialog("close");
       },
+      //If the player is unhappy with the current map, they can regenerate it by
+      //clicking here
       "Generate New Map": function() {
         $(this).dialog("close");
         location.reload();
-
 
       }
 

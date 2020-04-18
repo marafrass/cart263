@@ -1,22 +1,34 @@
-let allTilesIDs = [];
+/////////////////////////////////////////////////////////////////////
+// MAP FUNCTIONS
+//
+// These functions relate to building and generating the map!
+// (Important relevant general variables found in variables.js for easy access)
+//
+/////////////////////////////////////////////////////////////////////
 
+
+//set up global arrays for tiles
+let allTilesIDs = [];
 let waterTilesIDs = [];
 let landTilesIDs = [];
 let forestTilesIDs = [];
 
+//set up colors for sea tiles
 let waterColor = "#6a97de";
 let oceanColor = "#5e89cc";
-
+//set up colors for land tiles
 let landColor1 = "#529c57";
 let landColor2 = "#51a657";
 let landColor3 = "#56995a";
 let landColor4 = "#779c4c";
-
+//create array of land colors for randomization
 let landColors = [landColor1, landColor2, landColor3, landColor4];
 
+//createMap()
+//
+//Sets up tiles on the canvas based on given variables
 function createMap() {
 
-  console.log("Building map...");
   //create starting variables for rows and columns
   let rowNumber = 0;
   let columnNumber = 0;
@@ -25,10 +37,11 @@ function createMap() {
   for (let i = 0; i < mapTileHeight; i++) {
     for (let i = 0; i < mapTileWidth; i++) {
       let tileID = `${rowNumber}-${columnNumber}`
+
       //add the tiles along with their information to the document
       $(".canvas").append(`<div class=tile id=${tileID}> ${tileID}</div>`);
 
-      //append the relevant information
+      //append the relevant basic information
       $(`#${tileID}`).data("info", {
         terrain: "Water",
         feature: "Nothing",
@@ -38,49 +51,49 @@ function createMap() {
         y: rowNumber
 
       });
+      //add to column to move on
       columnNumber += 1;
       //add the id's of all these tiles to an array for easy access
       allTilesIDs.push(tileID);
-
     };
-
+    //add to row and nullify column to reset
     columnNumber = 0;
     rowNumber += 1;
   };
 
 };
 
+//assignWater()
+//
+//This function assigns water tiles and properties to all tiles
 function assignWater() {
 
   //set all tiles initial color to blue (water tiles)
   for (let i = 0; i < allTilesIDs.length; i++) {
     $(`#${allTilesIDs[i]}`).css('background-color', waterColor);
     $(`#${allTilesIDs[i]}`).data('info').feature = "Shallows";
-    //Set shallows tiles to animate
-  //  $(`#${allTilesIDs[i]}`).css('animation-name', "shallows");
-  //  $(`#${allTilesIDs[i]}`).css('animation-duration', "4s");
-  //  $(`#${allTilesIDs[i]}`).css('animation-iteration-count', "infinite");
 
     //calculate amount of ocean based on oceanrate
     let chanceOfOcean = (Math.floor(Math.random() * 100));
     if (chanceOfOcean <= oceanRate) {
+
       //set ocean tiles color
       $(`#${allTilesIDs[i]}`).css('background-color', oceanColor);
       $(`#${allTilesIDs[i]}`).data('info').feature = "Ocean";
-    //  $(`#${allTilesIDs[i]}`).css('animation-name', "oceans");
 
     }
 
   };
 
-
-
 }
 
-
+//assignLand()
+//
+//This function assigns land tiles based on initLandTile, which is
+// The amount of starting land tiles 
 function assignLand() {
 
-  for (let i = 0; i < initGrassTile; i++) {
+  for (let i = 0; i < initLandTile; i++) {
     let randomTileX = Math.floor(Math.random() * mapTileWidth);
     let randomTileY = Math.floor(Math.random() * mapTileHeight);
     //diagonal tiles

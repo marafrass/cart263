@@ -4,9 +4,12 @@ let placement = "This panel will tell you where this building should be placed"
 let costPP = 0;
 let costHP = 0;
 
+//setupTutorial()
+//
+//this function creates the tutorial window dialog thingy
 function setupTutorial() {
 
-
+  //Setup the HTML code for the tutorial
   return $(`<div class='tutorial-dialog' id="tutorial" title='Tutorial Window:' >  <div id="buildingInfo">
         <div id="infoHeader">${header}
         </div>
@@ -52,17 +55,15 @@ function setupTutorial() {
 
 
       </div></div>`).dialog({
+        //set up position,class, and size for dialog
     height: 560,
     width: 500,
     position: "left",
-    dialogClass : "noclose",
-
-
+    dialogClass: "noclose",
 
     //set buttons for the responses
     buttons: {
-
-
+      //button to close dialog and play little jolly closing tune 
       Close: function() {
         sfxPopup1.play();
         $(this).dialog("close");
@@ -77,14 +78,15 @@ function setupTutorial() {
 //showInfo()
 //
 //Updates the information that's currently in the tutorial window
-function showInfo(){
-//Set the currently selected item in the list to be x
-let x = ($("#list").get(0).value)-1;
+//whenever the option in the drop down box is changed
+function showInfo() {
+  //Set the currently selected item in the list to be x
+  let x = ($("#list").get(0).value) - 1;
   $("#infoHeader").text(dataInUse.tiles[x].tile);
   $("#sideInfoText").text(dataInUse.tiles[x].information);
   $("#costPP").text(dataInUse.tiles[x].PPcost);
   $("#costHP").text(dataInUse.tiles[x].HPcost);
   $("#placement").text(dataInUse.tiles[x].placement);
-sfxTurn.play();
+  sfxTurn.play();
 
 }

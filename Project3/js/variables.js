@@ -5,10 +5,10 @@
 // in a single doc for balancing and ease of access
 /////////////////////////////////////////////////////////////////////
 
-//MAP GENERATION 
+//MAP GENERATION
 let mapTileWidth = 51;
 let mapTileHeight = 51;
-let initGrassTile = 130;
+let initLandTile = 130;
 let forestRate = 30;
 let mountainRate = 10;
 let farmRate = 10;
