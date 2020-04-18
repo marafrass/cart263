@@ -1,44 +1,30 @@
-let cityCost = 13;
-let houseCost = 1;
-let factoryCost = 3;
-let campCost = 1;
-let mineCost = 1;
-let parkCost = 1;
-let farmCost = 1;
-let harborCost = 2;
-let lighthouseCost = 1;
-let oilrigCost = 3;
-let fisheryCost = 1;
-
-let productionPoints = cityCost + 2;
-let housingPoints = 22;
-
-
 
 //buildMenu()
 //
 //Spawn in the dialog box for selecting what the player wants to build
 function buildMenu() {
   //test if there is a building on the selected tile
-  if ($(`#${clickedTile}`).data("info").feature === "City") {
-    display("Can't build on a City! You dingus!")
+  if (buildings.includes($(`#${clickedTile}`).data("info").feature) === true) {
+    displayError("This tile already has a building!")
   } else if ($(`#${clickedTile}`).data("info").cityRange === false) {
     //if there is, stop player from building
     console.error("Can't build here!")
-    display("You're too far away from any city!");
+    displayError("You're too far away from any city!");
     //if there is no building here, check if the selected tile is a land tile
   } else if ($(`#${clickedTile}`).data("info").feature === "Ocean") {
     //if there is, stop player from building
     console.error("Can't build here!")
-    display("Can't build on " + ($(`#${clickedTile}`).data("info").feature) + "!");
+    displayError("Can't build on " + ($(`#${clickedTile}`).data("info").feature) + "!");
     //if there is no building here, check if the selected tile is a land tile
   } else if ((landTilesIDs.includes(`${clickedTile}`)) === true) {
     //if so, create dialog with relevant info and title
     display("Select your build!")
+    sfxPopup2.play();
     landDialog("Land Tile:", "What do you want to build on this tile?");
 
   } else if ($(`#${clickedTile}`).data("info").feature === "Shallows") {
     //if the selected tile has no building an doesnt appear in land tiles array, it must be a water tile
+    sfxPopup2.play();
     display("Select your build!")
     seaDialog("Sea Tile:", "What do you want to build on this tile?");
   }
@@ -58,7 +44,6 @@ function buildCity() {
     $(`#${clickedTile}`).css("background-image", "url(assets/images/house.png)");
     $(`#${clickedTile}`).data("info").feature = "City";
     display("City built!")
-
     productionPoints += 3;
     housingPoints += 3;
     updatePoints();
@@ -69,7 +54,7 @@ function buildCity() {
     cityCost += 2;
 
   } else {
-    display(`Not enough points! Need ${cityCost} PP and ${cityCost-5} HP!`)
+    displayError(`Not enough points! Need ${cityCost} PP and ${cityCost-5} HP!`)
   }
 
 }
@@ -86,11 +71,12 @@ function buildHouses() {
     let addedTotal = checkSurroundingTilesFor("City");
     addedTotal += checkSurroundingTilesFor("Park");
     housingPoints += (addedTotal + 1);
+    sfxHouse.play();
 
     display(`Houses built - earned ${addedTotal+1} Housing Points!`)
     updatePoints();
   } else {
-    display(`Not enough production points! Need ${houseCost}!`)
+    displayError(`Not enough production points! Need ${houseCost}!`)
   }
 
 }
@@ -108,16 +94,16 @@ function buildCamp() {
 
       let addedPoints = checkSurroundingTilesFor("Forest");
       productionPoints += addedPoints;
-
+      sfxCamp.play();
       display(`Camp built - Earned ${addedPoints} Production Points!`)
 
       console.log(`Camp built on ${clickedTile}!`)
       updatePoints();
     } else {
-      display("Can't build a Camp so close to another!")
+      displayError("Can't build a Camp so close to another!")
     }
   } else {
-    display(`Not enough housing points! Need ${campCost}!`)
+    displayError(`Not enough housing points! Need ${campCost}!`)
   }
 
 }
@@ -128,6 +114,7 @@ function buildFactory() {
 
     housingPoints -= factoryCost;
     productionPoints += factoryCost;
+    sfxFactory.play();
 
     display("Factory built!")
     $(`#${clickedTile}`).css("background-image", "url(assets/images/factory.png)");
@@ -135,7 +122,7 @@ function buildFactory() {
 
     updatePoints();
   } else {
-    display(`Not enough housing points! Need ${factoryCost}!`)
+    displayError(`Not enough housing points! Need ${factoryCost}!`)
   }
 
 }
@@ -149,6 +136,7 @@ function buildFarm() {
       let addedPoints = checkSurroundingTilesFor("Farmlands")
       housingPoints -= farmCost;
       productionPoints += addedPoints;
+      sfxFarm.play();
 
       display(`Farm built - earned ${addedPoints} Production Points!`)
       $(`#${clickedTile}`).css("background-image", "url(assets/images/farmhouse.png)");
@@ -157,10 +145,10 @@ function buildFarm() {
       console.log(`Farm built on ${clickedTile}!`)
       updatePoints();
     } else {
-      display("Can't build a Farm so close to another!")
+      displayError("Can't build a Farm so close to another!")
     }
   } else {
-    display(`Not enough housing points! Need ${farmCost}!`)
+    displayError(`Not enough housing points! Need ${farmCost}!`)
   }
 
 }
@@ -175,15 +163,16 @@ function buildPark() {
       $(`#${clickedTile}`).data("info").feature = "Park";
 
       productionPoints -= parkCost;
+      sfxPark.play();
 
       display(`Park built! How nice!`)
 
       updatePoints();
     } else {
-      display("Can't build a Park so close to another!")
+      displayError("Can't build a Park so close to another!")
     }
   } else {
-    display(`Not enough housing points! Need ${farmCost}!`)
+    displayError(`Not enough housing points! Need ${farmCost}!`)
   }
 
 }
@@ -200,16 +189,16 @@ function buildMine() {
       let addedPoints = (checkSurroundingTilesFor("Mountains") * 2);
       productionPoints += addedPoints;
       housingPoints -= mineCost;
-
+      sfxMine.play();
       display(`Mine built - Earned ${addedPoints} Production Points!`)
 
       updatePoints();
 
     } else {
-      display("Can't build a Mine so close to another!")
+      displayError("Can't build a Mine so close to another!")
     }
   } else {
-    display(`Not enough housing points! Need ${mineCost}!`)
+    displayError(`Not enough housing points! Need ${mineCost}!`)
   }
 }
 
@@ -232,16 +221,17 @@ function buildFishery() {
       let addedPoints = (checkSurroundingTilesFor("Fish")) * 2;
       productionPoints += addedPoints;
       housingPoints -= fisheryCost;
+      sfxFishery.play();
 
       display(`Fishery built - Earned ${addedPoints} Production Points!`)
 
       updatePoints();
 
     } else {
-      display(`Not enough housing points! Need ${fisheryCost}!`)
+      displayError(`Not enough housing points! Need ${fisheryCost}!`)
     }
   } else {
-    display("Can't build a Fishery so close to another!")
+    displayError("Can't build a Fishery so close to another!")
   }
 }
 
@@ -257,15 +247,16 @@ function buildOilRig() {
       let addedPoints = (checkSurroundingTilesFor("Oil")) * 5;
       productionPoints += addedPoints;
       housingPoints -= oilrigCost;
+      sfxOilrig.play();
 
       display(`Oil Rig built - Earned ${addedPoints} Production Points! Great job pushing fossil fuels, asshole!`)
 
       updatePoints();
     } else {
-      display("Can't build a Oil Rig so close to another!")
+      displayError("Can't build a Oil Rig so close to another!")
     }
   } else {
-    display(`Not enough housing points! Need ${oilrigCost}!`)
+    displayError(`Not enough housing points! Need ${oilrigCost}!`)
 
   }
 
@@ -282,15 +273,17 @@ function buildHarbor() {
       let addedPoints = checkSurroundingTilesFor("Shallows") * 1;
       productionPoints += addedPoints;
       housingPoints -= harborCost;
+      sfxHarbor.play();
+
       display(`Harbor built - Earned ${addedPoints} Production Points!`)
       updatePoints();
 
     } else {
-      display("Can't place a harbor here - needs an adjacent City!")
+      displayError("Can't place a harbor here - needs an adjacent City!")
 
     }
   } else {
-    display(`Not enough housing points! Need ${harborCost}!`)
+    displayError(`Not enough housing points! Need ${harborCost}!`)
   }
 
 
@@ -304,18 +297,19 @@ function buildLighthouse() {
       $(`#${clickedTile}`).css("background-image", "url(assets/images/lighthouse.png)");
       $(`#${clickedTile}`).data("info").feature = "Lighthouse";
 
-      let addedPoints = checkSurroundingTilesFor("Ocean") * 1.5;
+      let addedPoints = checkSurroundingTilesFor("Ocean") * 3;
       productionPoints += addedPoints;
       housingPoints -= lighthouseCost;
+      sfxLighthouse.play();
 
       display(`Lighthouse built - Earned ${addedPoints} Production Points!`)
 
       updatePoints();
     } else {
-      display("Can't place a lighthouse here - needs at least two tiles of grasslands!")
+      displayError("Can't place a lighthouse here - needs at least two tiles of grasslands!")
     }
   } else {
-    display(`Not enough housing points! Need ${lighthouseCost}!`)
+    displayError(`Not enough housing points! Need ${lighthouseCost}!`)
   }
 
 }
@@ -378,8 +372,6 @@ function setInRange() {
   // and I can not go beyond it at this point. Hell, I'm happy to have worked this out in the first
   // place.
   //
-  // radius is the most important one!
-  let radius = 5;
   let searchY = tileY - radius;
   let searchX = tileX - 0;
   let startingX = searchX;
@@ -410,11 +402,12 @@ function setInRange() {
         startingX -= 1;
         searchX = startingX;
       }
-      //when the mid-point has been passed, we instead run the follow for loop,
-      //which counts down instead of up
+      //mark that the mid point has been reached 
       if (searchY === tileY) {
         hitPeak = true; //yeah boiiiii
       }
+      //when the mid-point has been passed, we instead run the follow for loop,
+      //which counts down instead of up
     } else {
       let width = ((radius * 2) + 1);
       for (let i = 0; i < (radius + 1); i++) {
@@ -432,6 +425,7 @@ function setInRange() {
           }
           searchX += 1;
         }
+        //Add to variables to move row and column
         width -= 2;
         searchY += 1;
         startingX += 1;

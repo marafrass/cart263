@@ -59,6 +59,7 @@ function setup() {
 
 
 function setUpControls() {
+
   //Set up mouse hover effect
   $(".tile")
     .mouseover(function() {
@@ -108,10 +109,12 @@ function setUpControls() {
 
   $("#tutorialpanel")
     .click(function() {
+      sfxPopup3.play();
       $("#tutorial").dialog("close");
       setupTutorial();
     })
     .mouseover(function() {
+      sfxHover.play();
       $(this).css("background-color", "yellow");
     })
     .mouseout(function() {
@@ -125,7 +128,11 @@ function setUpControls() {
 
 
 function display(text) {
+  $("#infotext").text(text)
 
+}
+function displayError(text) {
+  sfxSelect2.play();
   $("#infotext").text(text)
 
 }

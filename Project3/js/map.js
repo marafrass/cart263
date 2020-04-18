@@ -1,13 +1,3 @@
-let mapTileWidth = 51;
-let mapTileHeight = 51;
-let initGrassTile = 130;
-let forestRate = 30;
-let mountainRate = 10;
-let farmRate = 10;
-let fishRate = 3;
-let oceanRate = 20;
-let oilRate = 0.05;
-
 let allTilesIDs = [];
 
 let waterTilesIDs = [];

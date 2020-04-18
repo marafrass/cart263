@@ -32,19 +32,15 @@ body {
 
 @keyframes border {
   0% {
-    border-color: #de9400;
+    border-color: white;
   }
 
-  33% {
-    border-color: yellow;
-  }
-
-  66% {
+  50% {
     border-color: black;
   }
 
   100% {
-    border-color: #de9400;
+    border-color: white;
   }
 }
 

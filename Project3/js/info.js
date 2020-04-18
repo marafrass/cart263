@@ -6,6 +6,7 @@ let costHP = 0;
 
 function setupTutorial() {
 
+
   return $(`<div class='tutorial-dialog' id="tutorial" title='Tutorial Window:' >  <div id="buildingInfo">
         <div id="infoHeader">${header}
         </div>
@@ -56,23 +57,20 @@ function setupTutorial() {
     position: "left",
     dialogClass : "noclose",
 
+
+
     //set buttons for the responses
     buttons: {
 
 
       Close: function() {
+        sfxPopup1.play();
         $(this).dialog("close");
         $(this).remove();
       }
     }
 
   })
-
-  $("#infoHeader").text("Header!");
-  $("#sideInfoText").text("info text!");
-  $("#costPP").text(`5 Production Points`);
-  $("#costHP").text(`5 Housing Points`);
-  $("#placement").text("Must be adjacent to City!");
 
 };
 
@@ -82,12 +80,11 @@ function setupTutorial() {
 function showInfo(){
 //Set the currently selected item in the list to be x
 let x = ($("#list").get(0).value)-1;
-
   $("#infoHeader").text(dataInUse.tiles[x].tile);
   $("#sideInfoText").text(dataInUse.tiles[x].information);
   $("#costPP").text(dataInUse.tiles[x].PPcost);
   $("#costHP").text(dataInUse.tiles[x].HPcost);
   $("#placement").text(dataInUse.tiles[x].placement);
-
+sfxTurn.play();
 
 }
