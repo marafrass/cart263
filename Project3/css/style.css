@@ -16,11 +16,10 @@ body {
 
 .tile {
   font-family: 'Girassol', cursive;
-  font-size: 12px;
-
+  font-size: 10px;
   color: #3b331c;
   width: 70px;
-  height:70px;
+  height: 60px;
   border: solid;
   border-width: thin;
   padding-bottom: 4px;
@@ -29,24 +28,52 @@ body {
   background-image: none;
   background-size: 100%;
   background-color: white;
-
 }
+
 @keyframes border {
-  0%   {border-color: #de9400;}
-  33%  {border-color: yellow;}
-  66%  {border-color: black;}
-  100% {border-color: #de9400;}
+  0% {
+    border-color: #de9400;
+  }
+
+  33% {
+    border-color: yellow;
+  }
+
+  66% {
+    border-color: black;
+  }
+
+  100% {
+    border-color: #de9400;
+  }
 }
 
 @keyframes shallows {
-  0%   {background-color: #6a97de;}
-  50%  {background-color: #5e92e0;}
-  100% {background-color: #6a97de;}
+  0% {
+    background-color: #6a97de;
+  }
+
+  50% {
+    background-color: #5e92e0;
+  }
+
+  100% {
+    background-color: #6a97de;
+  }
 }
+
 @keyframes oceans {
-  0%   {background-color: #5e89cc;}
-  50%  {background-color: #5179b8;}
-  100% {background-color: #5e89cc;}
+  0% {
+    background-color: #5e89cc;
+  }
+
+  50% {
+    background-color: #5179b8;
+  }
+
+  100% {
+    background-color: #5e89cc;
+  }
 }
 
 .panel {
@@ -65,52 +92,161 @@ body {
   transform: translate(-50%, 0);
 }
 
+#buildingInfo {
+  font-family: 'Girassol', cursive;
+  color: black;
+  background-color: #eddcab;
+  width: 100%;
+  height: 100%;
+  right: 0%;
+  padding: 12px;
+  float: right;
+}
+
+#infoHeader {
+  font-family: 'Girassol', cursive;
+  color: black;
+  border: solid;
+  border-color: #736335;
+  border-radius: 14px;
+  color: black;
+  font-size: 50px;
+  width: auto;
+  height: auto;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+#sideInfoText {
+  font-family: 'Girassol', cursive;
+  color: black;
+  border: solid;
+  border-color: #736335;
+  border-radius: 14px;
+  font-size: 20px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+}
+
+#cost {
+  font-family: 'Girassol', cursive;
+  color: black;
+  border: solid;
+  border-color: #736335;
+  border-radius: 14px;
+  padding: 10px;
+  float: left;
+  margin: 1%;
+  height: auto;
+  width: 15%;
+}
+
+#cost2 {
+  font-family: 'Girassol', cursive;
+  color: black;
+  border: solid;
+  border-color: #736335;
+  border-radius: 14px;
+  padding: 10px;
+  float: left;
+  margin: 1%;
+  height: auto;
+  width: 68%;
+}
+
+#costHP {
+  font-family: 'Girassol', cursive;
+  color: black;
+  color: black;
+  font-size: 20px;
+  font-style: bold;
+  width: auto;
+  padding: 0px;
+  margin: 0px;
+}
+
+#costPP {
+  font-family: 'Girassol', cursive;
+  color: black;
+  color: black;
+  font-size: 20px;
+  font-style: bold;
+  width: auto;
+  padding: 0px;
+  margin: 0px;
+}
+
+#placement {
+  font-family: 'Girassol', cursive;
+  color: black;
+  color: black;
+  font-size: 25px;
+  font-style: bold;
+  width: 100%;
+  height: auto;
+  float: right;
+  padding: 5px;
+  margin: 0%;
+}
+
 #tileinfopanel {
   font-family: 'Girassol', cursive;
-    border-radius: 8px;
+  border-radius: 8px;
   background-color: #eddcab;
   width: 20%;
   height: 60%;
   float: left;
   border: solid;
   border-radius: 8px;
-
 }
 
 #tileinfotext {
   font-family: 'Girassol', cursive;
-    border-radius: 8px;
+  border-radius: 8px;
   padding: 8px;
 }
 
 #characterpanel {
-width: 10%;
-height: 60%;
-background-color: black;
+  width: 10%;
+  height: 60%;
+  background-color: black;
   float: left;
   border: solid;
   border-radius: 8px;
   border-color: white;
   padding-left: 10px;
-  margin-left: 1.5%
-
+  margin-left: 1.5% background-image: none;
+  background-size: 100%;
 }
 
 #infopanel {
   font-family: 'Girassol', cursive;
   border-radius: 8px;
   background-color: #eddcab;
-  width: 65%;
+  width: 56%;
   height: 60%;
+  float: left;
+  font-size: 30px;
+  border: solid;
+  border-radius: 8px;
+}
+
+#tutorialpanel {
+  font-family: 'Girassol', cursive;
+  border-radius: 8px;
+  background-color: #eddcab;
+  text-align: center;
+  padding-top: 10px;
+  width: 10%;
+  height: 55%;
   float: right;
   font-size: 30px;
   border: solid;
   border-radius: 8px;
-
 }
 
 #infotext {
-
   padding: 8px;
 }
 
@@ -118,24 +254,31 @@ background-color: black;
   padding-top: 8px;
   padding-left: 8px;
 }
+
 #housing {
   padding-top: 8px;
-    padding-left: 8px;
+  padding-left: 8px;
 }
 
-.dialog{
+.dialog {
   position: fixed;
 }
 
-.fixed-dialog{
+.fixed-dialog {
   position: fixed;
-
 }
+
 div.ui-dialog {
-  position:fixed;
+  position: fixed;
 }
 
-.noclose .ui-dialog-titlebar-close
-{
-    display:none;
+.noclose .ui-dialog-titlebar-close {
+  display: none;
 }
+
+#tutorial {
+  height: 650;
+  width: 6000;
+}
+
+.ui-dialog {}

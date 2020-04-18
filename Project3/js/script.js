@@ -16,7 +16,32 @@ let currentTileID;
 let clickedTile;
 let firstCityPlaced = false;
 
+let dataInUse;
+
 function setup() {
+
+  /*********************************************************************/
+/////JSON LOADING
+  $.getJSON("data/data.json")
+    .done(dataLoaded)
+    .fail(dataError)
+
+  //dataLoaded()
+  //
+  //sets the loaded data to a variable
+  function dataLoaded(data) {
+    dataInUse = data;
+  }
+
+  //dataError()
+  //
+  //Displays error message wif the JSON doesnt load
+  function dataError(request, textStatus, error) {
+    console.error(error);
+  }
+/////JSON LOADING DONE
+/*********************************************************************/
+
 
   createMap();
   assignWater();
@@ -48,7 +73,7 @@ function setUpControls() {
           .text(tileTerrain + ", " +
             $(this).data("info").feature + ", " +
             $(this).data("info").y + "-" +
-            $(this).data("info").x 
+            $(this).data("info").x
           )
       } else {
         $("#tileinfotext")
@@ -64,18 +89,35 @@ function setUpControls() {
 
   $(".tile")
     .click(function() {
-        //for consecutive clicks, it's business as usual and we open the build menu
+      clickedTile = $(this).attr("id");
+      //for consecutive clicks, it's business as usual and we open the build menu
       if (firstCityPlaced === true) {
-        clickedTile = $(this).attr("id");
+
         buildMenu();
 
         //for the very first click, we place out first city!
+      } else if ((landTilesIDs.includes(`${clickedTile}`)) === false) {
+        display("Can't place a City here!")
+
       } else {
-        clickedTile = $(this).attr("id");
         buildCity();
         firstCityPlaced = true;
       }
     });
+
+
+  $("#tutorialpanel")
+    .click(function() {
+      $("#tutorial").dialog("close");
+      setupTutorial();
+    })
+    .mouseover(function() {
+      $(this).css("background-color", "yellow");
+    })
+    .mouseout(function() {
+      $(this).css("background-color", "#eddcab");
+    })
+
 
 
 };
@@ -85,34 +127,5 @@ function setUpControls() {
 function display(text) {
 
   $("#infotext").text(text)
-
-}
-
-function introPopup() {
-
-  return $("<div class='fixed-dialog' title='Hello!'><p>Welcome to divworld!</p></div>").dialog({
-    height: 650,
-    width: 400,
-    position: [],
-    modal: true,
-    dialogClass: "noclose",
-
-    //set buttons for the responses
-    buttons: {
-      Start: function() {
-        setUpControls();
-        $(this).dialog("close");
-      },
-      Regenerate: function() {
-        $(this).dialog("close");
-        location.reload();
-
-
-      }
-
-    }
-
-  })
-
 
 }

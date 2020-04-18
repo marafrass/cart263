@@ -1,7 +1,7 @@
 let mapTileWidth = 51;
 let mapTileHeight = 51;
-let initGrassTile = 100;
-let forestRate = 25;
+let initGrassTile = 130;
+let forestRate = 30;
 let mountainRate = 10;
 let farmRate = 10;
 let fishRate = 3;
@@ -16,7 +16,13 @@ let forestTilesIDs = [];
 
 let waterColor = "#6a97de";
 let oceanColor = "#5e89cc";
-let landColor = "#529c57";
+
+let landColor1 = "#529c57";
+let landColor2 = "#51a657";
+let landColor3 = "#56995a";
+let landColor4 = "#779c4c";
+
+let landColors = [landColor1, landColor2, landColor3, landColor4];
 
 function createMap() {
 
@@ -68,7 +74,7 @@ function assignWater() {
     //calculate amount of ocean based on oceanrate
     let chanceOfOcean = (Math.floor(Math.random() * 100));
     if (chanceOfOcean <= oceanRate) {
-      //set ocean tiles color 
+      //set ocean tiles color
       $(`#${allTilesIDs[i]}`).css('background-color', oceanColor);
       $(`#${allTilesIDs[i]}`).data('info').feature = "Ocean";
     //  $(`#${allTilesIDs[i]}`).css('animation-name', "oceans");
@@ -111,12 +117,17 @@ function assignLand() {
 
   //make tiles green
   for (let i = 0; i < landTilesIDs.length; i++) {
-    $(`#${landTilesIDs[i]}`).css('background-color', landColor);
+
+    //randomize a land color for the tile
+      let r = (Math.floor(Math.random() * landColors.length))
+    $(`#${landTilesIDs[i]}`).css('background-color', landColors[r]);
   };
+
   for (let i = 0; i < allTilesIDs.length; i++) {
     if ((landTilesIDs.includes(`${allTilesIDs[i]}`)) === true) {
       $(`#${allTilesIDs[i]}`).data('info').terrain = "Land";
       $(`#${allTilesIDs[i]}`).data('info').feature = "Grasslands";
+      $(`#${allTilesIDs[i]}`).data('info').cityRange = false;
       //set land tiles to not animate
       $(`#${allTilesIDs[i]}`).css('animation-name', "land");
       $(`#${allTilesIDs[i]}`).css('animation-duration', "0");

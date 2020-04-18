@@ -1,0 +1,166 @@
+{
+  "tiles": [
+    {
+      "tile": "Grasslands",
+      "information": "The simple green tiles upon which most life is built, along with every single variety of land building. Gives no bonus in itself.",
+      "PPcost": "-",
+      "HPcost": "-",
+      "placement": "-"
+    },
+
+    {
+      "tile": "Mountains",
+      "information": "Unyielding. Immovable. Immense. Inconvenient. These are but some of the words that poets have used to describe big, hunking lumps of stupid rocks. Nothing can be built on these bad boys.",
+      "PPcost": "-",
+      "HPcost": "-",
+      "placement": "Build mines adjacent to the mountain to receive points!"
+    },
+
+    {
+      "tile": "Farmlands",
+      "information": "We're not sure what kind of grain exactly grows on these tiles, but if you grind it up, sift it, bleach it, and mix it up with eggs, milk, sugar and maple syrup, it's apparently edible.",
+      "PPcost": "-",
+      "HPcost": "-",
+      "placement": "Build farms adjacent to the farmlands to receive points!"
+    },
+
+    {
+      "tile": "Forest",
+      "information": "Great air quality, too many trees. 2/5.",
+      "PPcost": "-",
+      "HPcost": "-",
+      "placement": "Build camps adjacent to the forests to receive points!"
+    },
+
+    {
+      "tile": "Shallows",
+      "information": "These tiles have deep potential, despite their somewhat judgy name, being the only sea tiles you can build on.",
+      "PPcost": "-",
+      "HPcost": "-",
+      "placement": "Harbors get points based on how many adjacent shallows tiles they have, so plan your cities accordingly!"
+    },
+
+    {
+      "tile": "Ocean",
+      "information": "We know less about these tiles than we do of the surface of the moon. That's not saying much, though. The surface of the moon is really boring.",
+      "PPcost": "-",
+      "HPcost": "-",
+      "placement": "Nothing can be built on Ocean tiles, but adjacent lighthouses get massive bonus points from them!"
+    },
+
+    {
+      "tile": "Fish",
+      "information": "The smell. The taste. The stink. The constant uncertainty of whether or not it has gone bad yet. Ah yes. Fish.",
+      "PPcost": "-",
+      "HPcost": "-",
+      "placement": "Build fisheries adjacent to Fish tiles to receive points!"
+    },
+
+    {
+      "tile": "Oil",
+      "information": "In the pursuit of production points, many lives have been lost - and none more than in the alluring trap of the black stuff. Oil, not Guinness. That's another kind of trap. A delicious one.",
+      "PPcost": "-",
+      "HPcost": "-",
+      "placement": "Only Oil Rigs get points for adjacent Oil tiles - but while they boost production massively, they have a negative impact on housing."
+    },
+
+    {
+      "tile": "Cities",
+      "information": "The pillars of your civilization. You can only build within the range of a city, so take great care where you place them. You can name them something goofy, though.",
+      "PPcost": "PP: -13 (Initial Cost)",
+      "HPcost": "HP: -8 (Initial Cost)",
+      "placement": "Place Cities nearby resource tiles - but make sure to leave room for houses, as well!"
+    },
+
+    {
+      "tile": "Houses",
+      "information": "The cornerstone of gaining Housing Points! Make sure to build many, and remember the saying: Our house, in the middle of our street.",
+      "PPcost": "PP: -2",
+      "HPcost": "HP: +2",
+      "placement": "Houses get +1 Housing Points for adjacent Cities and Parks, so plan your cities well!"
+    },
+
+    {
+      "tile": "Farms",
+      "information": "The neolithic revolution was the beginning of the great downfall for humanity. But since we're here already, we might as well get some potatoes.",
+      "PPcost": "PP: +1",
+      "HPcost": "HP: -1",
+      "placement": "Farms get +1 for every adjacent Farmlands tile!"
+    },
+
+    {
+      "tile": "Mines",
+      "information": "Just like the song: 'What's yours is mine, and mine, of course, is a place where minerals, gemstones or ore is being dug out of the ground.'",
+      "PPcost": "PP: +2",
+      "HPcost": "HP: -1",
+      "placement": "Mines get +2 for every adjacent Mountain tile!"
+    },
+
+    {
+      "tile": "Camps",
+      "information": "This ain't a summer camp, kid. This is a camp for men. Doing manly things. Like hunting, killing, swearing, and breaking down traditionally reinforced gender roles and ideals.",
+      "PPcost": "PP: +1",
+      "HPcost": "HP: -1",
+      "placement": "Camps get +1 for every adjacent Forest tile!"
+    },
+
+    {
+      "tile": "Factories",
+      "information": "Through a thick and toxic gate of black fog and smoke, I spied a single lily in the ground; dying, greyed with soot. Of this, I took a picture for my instagram. #society.",
+      "PPcost": "PP: +3",
+      "HPcost": "HP: -3",
+      "placement": "Factories can be built anywhere, but receive no adjacency bonuses."
+    },
+
+    {
+      "tile": "Parks",
+      "information": "Is a group of park guards called a parking lot?",
+      "PPcost": "PP: -1",
+      "HPcost": "HP: 0",
+      "placement": "Parks don't return anything by themselves, but offer Houses adjacency bonuses!"
+    },
+
+    {
+      "tile": "Harbors",
+      "information": "Harbors are noble things - they harbor no ill will for any visitor. Ships, on the other hand, are misogynist shitheads.",
+      "PPcost": "PP: +1",
+      "HPcost": "HP: -2",
+      "placement": "Harbors must be placed adjacent to a city, but offer bonuses for every adjacent Shallows tile!"
+    },
+
+    {
+      "tile": "Lighthouses",
+      "information": "Lighthouses are lit af.",
+      "PPcost": "PP: +3",
+      "HPcost": "HP: -1",
+      "placement": "Lighthouses need two adjacent Grasslands tiles to be built, but get massive bonuses from adjacent Ocean tiles!"
+    },
+
+    {
+      "tile": "Fisheries",
+      "information": "Remember that piece of fish you forgot out and started to stink up the entire house? Yeah. Imagine that, but over an entire boat for decades. Welcome aboard, sonny boy.",
+      "PPcost": "PP+2",
+      "HPcost": "HP-1",
+      "placement": "Fisheries provide +2 production points for every adjacent Fish tile!"
+    },
+
+    {
+      "tile": "Oil Rigs",
+      "information": "An oil rig is a big, unnatural construction pumping out a resource we can produce more unnatural construction with.",
+      "PPcost": "PP: +5",
+      "HPcost": "HP: -3",
+      "placement": "Oil Rigs provide huge point bonuses for any adjacent oil tiles."
+    }
+
+
+  ]
+
+
+
+
+
+
+
+
+
+}
