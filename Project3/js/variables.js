@@ -50,7 +50,8 @@ let buildings = [
   "Whalers",
   "Factory",
   "Lighthouse",
-  "Harbor"
+  "Harbor",
+  "Mountains"
 ];
 
 let introMessage =

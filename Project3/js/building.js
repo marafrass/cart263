@@ -18,7 +18,7 @@ function buildMenu() {
 
   //test if there is a building on the selected tile and stops player if true
   if (buildings.includes($(`#${clickedTile}`).data("info").feature) === true) {
-    displayError("This tile already has a building!")
+    displayError("Can't build here!")
 
   } else if ($(`#${clickedTile}`).data("info").cityRange === false) {
     //if the tile is out of range for a city, stop player from building
