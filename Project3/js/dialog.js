@@ -18,7 +18,7 @@ function landDialog(title, text) {
     .dialog({
       modal: true,
       height: 200,
-      width: 600,
+      width: 400,
 
       //set build buttons and link their respective build functions
       buttons: {
@@ -73,8 +73,8 @@ function seaDialog(title, text) {
     //Set dimensions of the dialog
     .dialog({
       modal: true,
-      height: 250,
-      width: 300,
+      height: 300,
+      width: 320,
 
       //set build buttons and link their respective build functions
       buttons: {

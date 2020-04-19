@@ -24,6 +24,7 @@ $(document).ready(setup);
 
 //Set up important global variables for transfering tile info across
 //functions
+let currentTileID;
 let clickedTile;
 let firstCityPlaced = false;
 //create variable to store JSON data
