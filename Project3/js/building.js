@@ -64,7 +64,7 @@ function buildCity() {
     productionPoints -= cityCost;
     housingPoints -= (cityCost - 5);
     //set the tile to contain the appropriate information
-    $(`#${clickedTile}`).css("background-image", "url(assets/images/house.png)");
+    $(`#${clickedTile}`).css("background-image", "url(assets/images/city.gif)");
     $(`#${clickedTile}`).data("info").feature = "City";
     display("City built!")
     //give points for building the city
@@ -98,11 +98,11 @@ function buildHouses() {
 
     productionPoints -= houseCost;
 
-    $(`#${clickedTile}`).css("background-image", "url(assets/images/houses.png)");
+    $(`#${clickedTile}`).css("background-image", "url(assets/images/house.gif)");
     $(`#${clickedTile}`).data("info").feature = "Houses";
 
     let addedTotal = checkSurroundingTilesFor("City");
-    addedTotal += checkSurroundingTilesFor("Park");
+    addedTotal += checkSurroundingTilesFor("Well");
     housingPoints += (addedTotal + 1);
     sfxHouse.play();
 
@@ -125,7 +125,7 @@ function buildCamp() {
 
       housingPoints -= campCost;
 
-      $(`#${clickedTile}`).css("background-image", "url(assets/images/camp.png)");
+      $(`#${clickedTile}`).css("background-image", "url(assets/images/camp.gif)");
       $(`#${clickedTile}`).data("info").feature = "Camp";
 
       let addedPoints = checkSurroundingTilesFor("Forest");
@@ -145,23 +145,23 @@ function buildCamp() {
 }
 
 /////////////////////////////////////////////////////////////////////
-//buildFactory()
+//buildWorkshop()
 //
-function buildFactory() {
+function buildWorkshop() {
 
-  if (housingPoints >= factoryCost) {
+  if (housingPoints >= workshopCost) {
 
-    housingPoints -= factoryCost;
-    productionPoints += factoryCost;
-    sfxFactory.play();
+    housingPoints -= workshopCost;
+    productionPoints += workshopCost;
+    sfxWorkshop.play();
 
-    display("Factory built!")
-    $(`#${clickedTile}`).css("background-image", "url(assets/images/factory.png)");
-    $(`#${clickedTile}`).data("info").feature = "Factory";
+    display("Workshop built!")
+    $(`#${clickedTile}`).css("background-image", "url(assets/images/workshop.gif)");
+    $(`#${clickedTile}`).data("info").feature = "Workshop";
 
     updatePoints();
   } else {
-    displayError(`Not enough housing points! Need ${factoryCost}!`)
+    displayError(`Not enough housing points! Need ${workshopCost}!`)
   }
 }
 
@@ -180,7 +180,7 @@ function buildFarm() {
       sfxFarm.play();
 
       display(`Farm built - earned ${addedPoints} Production Points!`)
-      $(`#${clickedTile}`).css("background-image", "url(assets/images/farmhouse.png)");
+      $(`#${clickedTile}`).css("background-image", "url(assets/images/barn.gif)");
       $(`#${clickedTile}`).data("info").feature = "Farm";
 
       console.log(`Farm built on ${clickedTile}!`)
@@ -194,23 +194,23 @@ function buildFarm() {
 }
 
 /////////////////////////////////////////////////////////////////////
-//buildPark()
+//buildWell()
 //
-function buildPark() {
+function buildWell() {
 
-  if (productionPoints >= parkCost) {
+  if (productionPoints >= wellCost) {
 
-    if (checkSurroundingTilesFor("Park") < 1) {
+    if (checkSurroundingTilesFor("Well") < 1) {
 
-      $(`#${clickedTile}`).css("background-image", "url(assets/images/park.png)");
-      $(`#${clickedTile}`).data("info").feature = "Park";
+      $(`#${clickedTile}`).css("background-image", "url(assets/images/well.png)");
+      $(`#${clickedTile}`).data("info").feature = "Well";
 
-      productionPoints -= parkCost;
-      sfxPark.play();
-      display(`Park built! How nice!`)
+      productionPoints -= wellCost;
+      sfxWell.play();
+      display(`Well built! How nice!`)
       updatePoints();
     } else {
-      displayError("Can't build a Park so close to another!")
+      displayError("Can't build a Well so close to another!")
     }
   } else {
     displayError(`Not enough housing points! Need ${farmCost}!`)
@@ -226,7 +226,7 @@ function buildMine() {
 
     if (checkSurroundingTilesFor("Mine") < 1) {
 
-      $(`#${clickedTile}`).css("background-image", "url(assets/images/mine.png)");
+      $(`#${clickedTile}`).css("background-image", "url(assets/images/mine.gif)");
       $(`#${clickedTile}`).data("info").feature = "Mine";
 
       let addedPoints = (checkSurroundingTilesFor("Mountains") * 2);
@@ -260,7 +260,7 @@ function buildFishery() {
 
     if (housingPoints >= fisheryCost) {
 
-      $(`#${clickedTile}`).css("background-image", "url(assets/images/fishery.png)");
+      $(`#${clickedTile}`).css("background-image", "url(assets/images/fishery.gif)");
       $(`#${clickedTile}`).data("info").feature = "Fishery";
 
       let addedPoints = (checkSurroundingTilesFor("Fish")) * 2;
@@ -283,27 +283,27 @@ function buildFishery() {
 /////////////////////////////////////////////////////////////////////
 //buildOilRig()
 //
-function buildOilRig() {
+function buildWhalers() {
 
-  if (housingPoints >= oilrigCost) {
+  if (housingPoints >= whalerCost) {
 
-    if (checkSurroundingTilesFor("Oil Rig") < 1) {
+    if (checkSurroundingTilesFor("Whalers") < 1) {
 
-      $(`#${clickedTile}`).css("background-image", "url(assets/images/refinery.png)");
-      $(`#${clickedTile}`).data("info").feature = "Oil Rig";
-      let addedPoints = (checkSurroundingTilesFor("Oil")) * 5;
+      $(`#${clickedTile}`).css("background-image", "url(assets/images/whalers.gif)");
+      $(`#${clickedTile}`).data("info").feature = "Whalers";
+      let addedPoints = (checkSurroundingTilesFor("Whales")) * 5;
       productionPoints += addedPoints;
-      housingPoints -= oilrigCost;
+      housingPoints -= whalerCost;
       sfxOilrig.play();
 
-      display(`Oil Rig built - Earned ${addedPoints} Production Points! Great job pushing fossil fuels, asshole!`)
+      display(`Whalers placed - Earned ${addedPoints} Production Points!`)
 
       updatePoints();
     } else {
-      displayError("Can't build a Oil Rig so close to another!")
+      displayError("Can't place Whalers so close to another!")
     }
   } else {
-    displayError(`Not enough housing points! Need ${oilrigCost}!`)
+    displayError(`Not enough housing points! Need ${whalercost}!`)
 
   }
 
@@ -317,7 +317,7 @@ function buildHarbor() {
   if (housingPoints >= harborCost) {
 
     if (checkSurroundingTilesFor("City") >= 1) {
-      $(`#${clickedTile}`).css("background-image", "url(assets/images/harbor.png)");
+      $(`#${clickedTile}`).css("background-image", "url(assets/images/harbor.gif)");
       $(`#${clickedTile}`).data("info").feature = "Harbor";
 
       let addedPoints = checkSurroundingTilesFor("Shallows") * 1;
@@ -347,7 +347,7 @@ function buildLighthouse() {
   if (housingPoints >= lighthouseCost) {
 
     if (checkSurroundingTilesFor("Grasslands") >= 2) {
-      $(`#${clickedTile}`).css("background-image", "url(assets/images/lighthouse.png)");
+      $(`#${clickedTile}`).css("background-image", "url(assets/images/lighthouse.gif)");
       $(`#${clickedTile}`).data("info").feature = "Lighthouse";
 
       let addedPoints = checkSurroundingTilesFor("Ocean") * 3;

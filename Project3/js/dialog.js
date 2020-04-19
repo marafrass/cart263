@@ -36,18 +36,18 @@ function landDialog(title, text) {
           buildCamp();
 
         },
-        Factory: function() {
+        Workshop: function() {
           $(this).dialog("close");
-          buildFactory();
+          buildWorkshop();
 
         },
         Farm: function() {
           $(this).dialog("close");
           buildFarm();
         },
-        Park: function() {
+        Well: function() {
           $(this).dialog("close");
-          buildPark();
+          buildWell();
         },
         Mine: function() {
           $(this).dialog("close");
@@ -92,9 +92,9 @@ function seaDialog(title, text) {
           buildLighthouse();
 
         },
-        "Oil Rig": function() {
+        Whalers: function() {
           $(this).dialog("close");
-          buildOilRig();
+          buildWhalers();
 
         }
       },
@@ -168,7 +168,7 @@ function nameCity() {
 //and the options to change character or regenerate the map
 function introPopup() {
 
-  return $("<div class='fixed-dialog' title='Hello!'><p>Welcome to divworld!</p></div>").dialog({
+  return $(`<div class='fixed-dialog' title='Welcome to CIVITUS!'><p style= "font-family:'Girassol'">${introMessage}</p></div>`).dialog({
     //set properties, position and size of the dialog
     height: 650,
     width: 400,
@@ -180,25 +180,25 @@ function introPopup() {
     buttons: {
       //the first four set the player character to be one of four animals
       Dog: function() {
-        display("You're now a dog mayor!")
+        display("You're now a dog!")
         sfxCheck.play();
         $("#characterpanel").css("background-image", "url(assets/images/dog.png)");
 
       },
       Cat: function() {
-        display("You're now a cat mayor!")
+        display("You're now a cat!")
         sfxCheck.play();
         $("#characterpanel").css("background-image", "url(assets/images/cat.png)");
 
       },
       Penguin: function() {
-        display("You're now a penguin mayor!")
+        display("You're now a penguin!")
         sfxCheck.play();
         $("#characterpanel").css("background-image", "url(assets/images/penguin.png)");
 
       },
       Platypus: function() {
-        display("You're now a platypus mayor!")
+        display("You're now a platypus!")
         sfxCheck.play();
         $("#characterpanel").css("background-image", "url(assets/images/platypus.png)");
 
@@ -221,6 +221,5 @@ function introPopup() {
     }
 
   })
-
 
 }

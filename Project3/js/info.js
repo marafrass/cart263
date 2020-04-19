@@ -29,7 +29,7 @@ function setupTutorial() {
 <option value="5">Shallows</option>
 <option value="6">Ocean</option>
 <option value="7">Fish</option>
-<option value="8">Oil</option>
+<option value="8">Whales</option>
 
 </optgroup>
 <optgroup label="Land Buildings">
@@ -38,8 +38,8 @@ function setupTutorial() {
 <option value="11">Farms</option>
 <option value="12">Mines</option>
 <option value="13">Camps</option>
-<option value="14">Factories</option>
-<option value="15">Parks</option>
+<option value="14">Workshops</option>
+<option value="15">Wells</option>
 
 </optgroup>
 
@@ -47,7 +47,7 @@ function setupTutorial() {
 <option value="16">Harbors</option>
 <option value="17">Lighthouses</option>
 <option value="18">Fisheries</option>
-<option value="19">Oil Rigs</option>
+<option value="19">Whalers</option>
 
 </optgroup>
 
@@ -63,7 +63,7 @@ function setupTutorial() {
 
     //set buttons for the responses
     buttons: {
-      //button to close dialog and play little jolly closing tune 
+      //button to close dialog and play little jolly closing tune
       Close: function() {
         sfxPopup1.play();
         $(this).dialog("close");

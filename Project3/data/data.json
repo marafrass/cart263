@@ -57,11 +57,11 @@
     },
 
     {
-      "tile": "Oil",
-      "information": "In the pursuit of production points, many lives have been lost - and none more than in the alluring trap of the black stuff. Oil, not Guinness. That's another kind of trap. A delicious one.",
+      "tile": "Whales",
+      "information": "What? No, you can't call me Ishmael.",
       "PPcost": "-",
       "HPcost": "-",
-      "placement": "Only Oil Rigs get points for adjacent Oil tiles - but while they boost production massively, they have a negative impact on housing."
+      "placement": "Only Whalers get points for adjacent whale tiles - but while they boost production massively, they have a negative impact on housing."
     },
 
     {
@@ -77,7 +77,7 @@
       "information": "The cornerstone of gaining Housing Points! Make sure to build many, and remember the saying: Our house, in the middle of our street.",
       "PPcost": "PP: -2",
       "HPcost": "HP: +2",
-      "placement": "Houses get +1 Housing Points for adjacent Cities and Parks, so plan your cities well!"
+      "placement": "Houses get +1 Housing Points for adjacent Cities and Wells, so plan your cities well!"
     },
 
     {
@@ -105,19 +105,19 @@
     },
 
     {
-      "tile": "Factories",
+      "tile": "Workshops",
       "information": "Through a thick and toxic gate of black fog and smoke, I spied a single lily in the ground; dying, greyed with soot. Of this, I took a picture for my instagram. #society.",
       "PPcost": "PP: +3",
       "HPcost": "HP: -3",
-      "placement": "Factories can be built anywhere, but receive no adjacency bonuses."
+      "placement": "Workshops can be built anywhere, but receive no adjacency bonuses."
     },
 
     {
-      "tile": "Parks",
-      "information": "Is a group of park guards called a parking lot?",
+      "tile": "Wells",
+      "information": "Well, well, well.",
       "PPcost": "PP: -1",
       "HPcost": "HP: 0",
-      "placement": "Parks don't return anything by themselves, but offer Houses adjacency bonuses!"
+      "placement": "Wells don't return anything by themselves, but offer Houses adjacency bonuses!"
     },
 
     {
@@ -145,11 +145,11 @@
     },
 
     {
-      "tile": "Oil Rigs",
-      "information": "An oil rig is a big, unnatural construction pumping out a resource we can produce more unnatural construction with.",
+      "tile": "Whalers",
+      "information": "It takes a special kind of brave asshole to become a whaler, and as history has shown us, assholes are a global phenomenon.",
       "PPcost": "PP: +5",
-      "HPcost": "HP: -3",
-      "placement": "Oil Rigs provide huge point bonuses for any adjacent oil tiles."
+      "HPcost": "HP: -4",
+      "placement": "Whalers receive huge point bonuses (+5) for any adjacent whale tiles."
     }
 
 

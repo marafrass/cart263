@@ -50,7 +50,6 @@ let sfxMine = new Howl({
 
 let music1 = new Howl({
   src: ['assets/sounds/music1.wav'],
-  loop: true,
   volume: 0.5,
   onend: function() {
   music2.play();;
@@ -58,7 +57,6 @@ let music1 = new Howl({
 });
 let music2 = new Howl({
   src: ['assets/sounds/music2.wav'],
-  loop: true,
   volume: 0.5,
   onend: function() {
   music1.play();
@@ -85,10 +83,10 @@ let sfxOilrig = new Howl({
 let sfxCamp = new Howl({
   src: ['assets/sounds/archery_range.wav']
 });
-let sfxFactory = new Howl({
+let sfxWorkshop = new Howl({
   src: ['assets/sounds/blacksmith.wav']
 });
-let sfxPark = new Howl({
+let sfxWell = new Howl({
   src: ['assets/sounds/research.wav']
 });
 
@@ -98,6 +96,6 @@ let sfxPark = new Howl({
 //This function basically loops the music for the game
 function playMusic() {
   console.log("Started playing music")
-  music2.play();
+  music1.play();
 
 }

@@ -2,13 +2,18 @@
 
 /********************************************************************
 
-Title of Project
-by Martin Hanses
+CIVITUS
+Art and code by Martin Hanses
 
-This is a template. Fill in the title, author, and this description
-to match your project! Write JavaScript to do amazing things below!
+CIVITUS is a casual world-building game in which you build and expand your
+civilization by placing cities and facilities over the map! Take your time
+and relax, but keep an eye on your housing/production points!
 
-Audio ripped from Age of Empires 2 and Civilization III,
+There's no win/lose state in Civitus - build for as long as you want, or
+until you run out of points! It's all good, baby!
+
+
+Audio from Age of Empires 2 and Civilization III,
 music from Civilization VI
 
 https://www.sounds-resource.com/pc_computer/ageofempiresiiexpansions/sound/32974/
@@ -17,12 +22,16 @@ https://www.sounds-resource.com/pc_computer/sidmeierscivilizationiii/
 
 $(document).ready(setup);
 
-let currentTileID;
+//Set up important global variables for transfering tile info across
+//functions
 let clickedTile;
 let firstCityPlaced = false;
-
+//create variable to store JSON data
 let dataInUse;
 
+//setup()
+//
+//Set up the game on startup and document load!
 function setup() {
 
   /*********************************************************************/
@@ -53,11 +62,11 @@ function setup() {
   assignWater();
   assignLand();
   //Generate features on map!
-  assignFeatures("Mountains", mountainRate, "url(assets/images/mountain.png)")
+  assignFeatures("Mountains", mountainRate, "url(assets/images/mountains.gif)")
   assignFeatures("Forest", forestRate, "url(assets/images/forest.png)")
-  assignFeatures("Farmlands", farmRate, "url(assets/images/farm.png)")
-  assignSeaFeatures("Fish", fishRate, "url(assets/images/fish.png)")
-  assignSeaFeatures("Oil", oilRate, "url(assets/images/oil.png)")
+  assignFeatures("Farmlands", farmRate, "url(assets/images/farmlands.gif)")
+  assignSeaFeatures("Fish", fishRate, "url(assets/images/fish.gif)")
+  assignSeaFeatures("Whales", whaleRate, "url(assets/images/whales.gif)")
   //Set up points!
   updatePoints();
   //Open splash popup!
